@@ -164,7 +164,7 @@
 					</ul>
             	</div>
             	<div class="logout">
-            		<button class="btn btn-danger" style="" onclick="location.href='/mmc_gamuda/logout'">Logout</button>
+            		<button class="btn btn-danger" style="" onclick="location.href='/mmc_ceodb/logout'">Logout</button>
             	</div>
             </div>
 
@@ -192,7 +192,7 @@
     <div id="breadcrumbs_container">
         <ol id="breadcrumbs">
             <li>
-                <a href="../../mmc_gamuda/front/">
+                <a href="../../mmc_ceodb/front/">
                     <i class="fa fa-home fa-md" style="padding-top:2px;"></i>
                 </a>
             </li>

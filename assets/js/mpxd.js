@@ -843,7 +843,7 @@ function toExcel() {
 	var jsonString = JSON.stringify(qqq);
 	// console.log(qqq+'22222');
 	// console.log(jsonString+'33333');
-	var $form = $('<form action="/mmc_gamuda/toexcel" method="POST" enctype="multipart/form-data" style="display:none"></form>');
+	var $form = $('<form action="/mmc_ceodb/toexcel" method="POST" enctype="multipart/form-data" style="display:none"></form>');
 	var $input = $('<input type="hidden" name="jsondata">');
 
 	$input.attr('value',jsonString);
@@ -853,7 +853,7 @@ function toExcel() {
 
 function toPDF(id) {
 	//console.log("PDFING "+id);
-	var $form = $('<form action="/mmc_gamuda/topdf" method="POST" enctype="multipart/form-data" style="display:none"></form>');
+	var $form = $('<form action="/mmc_ceodb/topdf" method="POST" enctype="multipart/form-data" style="display:none"></form>');
 	var $input = $('<input type="hidden" name="id">');
 	var $input2 = $('<input type="hidden" name="print">');
 	$input.attr('value',id);

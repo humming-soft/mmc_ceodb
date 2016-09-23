@@ -138,7 +138,7 @@ mpxd.modules.train_manufacturing_progress_table.train_progress = Backbone.View.e
         var promises = $.map(['mrt_train_diagram_1.svg', 'mrt_train_diagram_2.svg', 'mrt_train_diagram_3.svg', 'mrt_train_diagram_4.svg'],
             function (item, idx) {
                 var d = $.Deferred();
-                d3.xml("/mmc_gamuda/assets/img/" + item, "image/svg+xml", function (error, xml) {
+                d3.xml("/mmc_ceodb/assets/img/" + item, "image/svg+xml", function (error, xml) {
                     if (error) d.reject(error); else d.resolve(xml.documentElement);
                 });
                 return d.promise();
@@ -1602,7 +1602,7 @@ mpxd.modules.manufacturing_progress_chart.train_progress = Backbone.View.extend(
             $('#id_actual').text(perc);
             $('#id_fullyTable').append(td);
             //Train head percemntage fillng logic : start
-            d3.xml("/mmc_gamuda/assets/img/mrt_train_diagram_head.svg", "image/svg+xml", function (error, xml) {
+            d3.xml("/mmc_ceodb/assets/img/mrt_train_diagram_head.svg", "image/svg+xml", function (error, xml) {
                 if (error) throw error
                 document.getElementById('train_progress_container').appendChild(xml.documentElement);
 
@@ -3679,7 +3679,7 @@ function enableAllTheseDays(date) {
 
 function getRoute() {
     var l = location.href;
-    var find = "/mmc_gamuda/";
+    var find = "/mmc_ceodb/";
     var start = l.indexOf(find);
 //alert (start);
     var currentRoute = l.substr(start + find.length);

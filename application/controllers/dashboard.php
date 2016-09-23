@@ -74,7 +74,7 @@ class Dashboard extends CI_Controller {
 		$phantomexec = $phantomdir."phantomjs.exe";
 		$phantomscript = $phantomdir."topdf.js";
 		
-		$cmd = $phantomexec . " " . $phantomscript . " " .  $protocol . "localhost:" . $port . "/mmc_gamuda/" . $fullslug . ($print ? "?print=1" : "") . " " . $tempfile;
+		$cmd = $phantomexec . " " . $phantomscript . " " .  $protocol . "localhost:" . $port . "/mmc_ceodb/" . $fullslug . ($print ? "?print=1" : "") . " " . $tempfile;
 		//echo $cmd;
 		shell_exec($cmd);
 		if (file_exists($tempfile)) {
