@@ -844,7 +844,7 @@ function iterate(data) {
 
 function getJSON(slug, callback) {
 
-    $.getJSON("/mmc_gamuda/api/" + slug, function(data) {
+    $.getJSON("/mmc_ceodb/api/" + slug, function(data) {
         callback(data)
     });
 }

@@ -201,11 +201,11 @@
 			 <div id="navbar">
 				<!--<a href="./graph_din.html"><img src="<?php echo $this->config->base_url(); ?>assets/img/construction.png" /></a>-->
 				
-				<a href="/mmc_gamuda/programme/scurve"><img src="<?php echo $this->config->base_url(); ?>assets/img/programme2.png" /></a>
+				<a href="/mmc_ceodb/programme/scurve"><img src="<?php echo $this->config->base_url(); ?>assets/img/programme2.png" /></a>
 				<!--<a href="#"><img src="<?php echo $this->config->base_url(); ?>assets/img/commercial2.png" /></a>-->
 				<a class="nopointer" href="#"><img src="<?php echo $this->config->base_url(); ?>assets/img/safety3.png" /></a>
-				<a href="/mmc_gamuda/procurement/summary"><img src="<?php echo $this->config->base_url(); ?>assets/img/procurement.png" /></a>
-				<a href="#"><img src="<?php echo $this->config->base_url(); ?>assets/img/logout.png" onclick="location.href='/mmc_gamuda/logout'"/></a>
+				<a href="/mmc_ceodb/procurement/summary"><img src="<?php echo $this->config->base_url(); ?>assets/img/procurement.png" /></a>
+				<a href="#"><img src="<?php echo $this->config->base_url(); ?>assets/img/logout.png" onclick="location.href='/mmc_ceodb/logout'"/></a>
 			</div> 
 			
 		</div>

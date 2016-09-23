@@ -143,7 +143,7 @@
 			var failedMsg = '<div class="alert alert-danger"> <b>Login Failed!</b> Please check your username/password</div>';
 			var login = function(username,password){
 				$.ajax({
-					url: "/mmc_gamuda/login",
+					url: "/mmc_ceodb/login",
 					type: "POST",
 					data: { username: username, password: password },
 					success: function(data) {
