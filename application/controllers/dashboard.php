@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller {
     public function index($slug = FALSE) {
         //print_r($this->session->all_userdata());
         if ($this->session->userdata('loggedin')) { // Redirects logged in user
-            return redirect('front');
+            return redirect('dashboard');
         }
         //$this->load->view('templates/header', $data);
 
@@ -102,7 +102,7 @@ class Dashboard extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function front() {
+    public function dashboard() {
         
         if (!$this->session->userdata('loggedin'))
             return redirect('/');
@@ -186,7 +186,8 @@ class Dashboard extends CI_Controller {
             foreach ($d as $kk => $dd)
                 $data['data'][$kk] = $dd;
         }
-        $this->load->view('dashboard/front', $data);
+//        $this->load->view('dashboard/dashboard', $data);
+        $this->load->view('index', $data);
     }
 
     public function view($item = FALSE, $query_type = FALSE, $query_key = FALSE) {
@@ -216,9 +217,10 @@ class Dashboard extends CI_Controller {
         $data['title'] = 'View Page';
         $data['userdata'] = $this->session->all_userdata(); 
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('dashboard/view', $data);
-        $this->load->view('templates/footer');
+//        $this->load->view('templates/default_header', $data);
+//        $this->load->view('dashboard/view', $data);
+//        $this->load->view('templates/default_footer');
+        $this->load->view('portlets_holder',$data);
     }
 
     public function portlet($slug = FALSE, $page = FALSE) {

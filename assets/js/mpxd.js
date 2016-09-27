@@ -371,7 +371,7 @@ function selectPort(port) {
 
 function drawPortletHelper(id, port) {
 	if (!editing) var html = '<li data-id="{0}" ><div id="portlet_{0}" class="block block-drop-shadow"></div></li>'.format(id);
-	else var html = '<li data-id="{0}"><header class="editing"><i class="header-button header-button-edit">edit</i><i class="header-button header-button-move">|||</i></header><div id="portlet_{0}" class="block block-drop-shadow"></div></li>'.format(id);
+	else var html = '<li data-id="{0}"><header class="editing"><i class="header-button header-button-edit fa fa-edit fa-2x"></i><i class="header-button header-button-move fa fa-arrows fa-2x"></i></header><div id="portlet_{0}" class="block block-drop-shadow"></div></li>'.format(id);
 	//console.log(html);
 	var chosenPort = selectPort(port);
 	var $el = gridster.add_widget(html, chosenPort.size_x, chosenPort.size_y, chosenPort.col, chosenPort.row);

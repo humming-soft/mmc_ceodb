@@ -117,18 +117,8 @@
 				//CURRENT ID : 76
 			];
 		</script>
-        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/jquery/jquery.min.js></script>
-        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/jquery/jquery-ui.min.js></script>
         <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/jquery/jquery-migrate.min.js></script>
         <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/jquery/globalize.js></script>
-        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/bootstrap/bootstrap.min.js></script>
-        <!--<script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/mcustomscrollbar/jquery.mousewheel.min.js></script>-->
-        <!--<script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js></script>-->
-<!--        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/uniform/jquery.uniform.min.js></script>
-        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/knob/jquery.knob.js></script>
-        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/sparkline/jquery.sparkline.min.js></script>-->
-<!--        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/flot/jquery.flot.js></script>
-        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/flot/jquery.flot.resize.js></script>-->
         <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/js.js></script>
         <?php /* <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/require.js data-main="<?php echo $this->config->base_url(); ?>assets/js/requiremain.js"></script>
           <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/text.js></script> */ ?>

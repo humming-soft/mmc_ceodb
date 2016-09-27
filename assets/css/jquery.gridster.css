@@ -126,32 +126,32 @@
 
 
 .gridster .gs-w  header.editing {
-	background: #333;
-	display: block;
-	position:absolute;
-	top:0px;
-	right:15px;
-	font-size: 10px;
-	line-height: normal;
-	padding: 4px 0 6px ;
-	margin-bottom: 0px;
-	text-align: center;
-	color: #fff;
-	width: 75px;
-	height: 40px;
-	z-index: 2;
+    background: #666473;
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 21px;
+    font-size: 10px;
+    line-height: normal;
+    padding: 4px 0 6px;
+    margin-bottom: 0px;
+    text-align: center;
+    color: #fff;
+    width: 72px;
+    height: 32px;
+    z-index: 2;
 }
 
 .gridster .gs-w header.editing .header-button {
-	width: 30px; 
-	height: 30px;
-	margin-right: 5px; 
-	display: block; 
-	float:right;
-	background: white;
-	border: 1px solid gold;
-	color: black;
-	text-align: center;
+    width: 28px;
+    height: 24px;
+    margin-right: 5px;
+    display: block;
+    float: right;
+    background: white;
+    border: 1px solid gold;
+    color: black;
+    text-align: center;
 }
 
 .header-button.header-button-move { cursor: move; }

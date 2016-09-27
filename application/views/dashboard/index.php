@@ -151,7 +151,7 @@
 						if(data === '1'){
                             $('#login_failed').fadeOut();
 							$('#login_success').fadeIn();
-							setTimeout("location.href = 'front';",1500);
+							setTimeout("location.href = 'dashboard';",1500);
 						} else {
                             $('#login_failed').fadeOut();
 							$('#login_failed').fadeIn().delay();

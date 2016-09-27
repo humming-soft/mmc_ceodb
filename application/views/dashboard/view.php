@@ -192,7 +192,7 @@
     <div id="breadcrumbs_container">
         <ol id="breadcrumbs">
             <li>
-                <a href="../../mmc_ceodb/front/">
+                <a href="../../mmc_ceodb/dashboard/">
                     <i class="fa fa-home fa-md" style="padding-top:2px;"></i>
                 </a>
             </li>

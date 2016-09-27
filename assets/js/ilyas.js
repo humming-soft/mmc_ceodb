@@ -3034,76 +3034,75 @@ mpxd.constructors.scurve = function (data) {
 
 mpxd.modules.scurve.GenerateScurve = function (items, componentSelector) {
     //mpxd.modules.scurve.initializeScurve();
-    var data = items;
-    var el = "#portlet_" + data.id;
+        var data = items;
+        var el = "#portlet_" + data.id;
 
-    var type = data.chartType;
-    var view = data.viewType;
-    var trend = data.trend.toLowerCase();
+        var type = data.chartType;
+        var view = data.viewType;
+        var trend = data.trend.toLowerCase();
 
-    data.categories = [];
-    data.currentEarly = data.currentEarly.split('%')[0];
-    data.currentActual = data.currentActual.split('%')[0];
-    data.currentLate = data.currentLate.split('%')[0];
-    //console.log(data);
+        data.categories = [];
+        data.currentEarly = data.currentEarly.split('%')[0];
+        data.currentActual = data.currentActual.split('%')[0];
+        data.currentLate = data.currentLate.split('%')[0];
+        //console.log(data);
 
-    if (type == "long") {
-        data.categories = ["Jan/12", "Feb/12", "Mar/12", "Apr/12", "May/12", "Jun/12", "Jul/12", "Aug/12", "Sep/12", "Oct/12", "Nov/12", "Dec/12", "Jan/13", "Feb/13", "Mar/13", "Apr/13", "May/13", "Jun/13", "Jul/13", "Aug/13", "Sep/13", "Oct/13", "Nov/13", "Dec/13", "Jan/14", "Feb/14", "Mar/14", "Apr/14", "May/14", "Jun/14", "Jul/14", "Aug/14", "Sep/14", "Oct/14", "Nov/14", "Dec/14", "Jan/15", "Feb/15", "Mar/15", "Apr/15", "May/15", "Jun/15", "Jul/15", "Aug/15", "Sep/15", "Oct/15", "Nov/15", "Dec/15", "Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16", "Jul/16", "Aug/16", "Sep/16", "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17"];
-    } else if (type == "short") {
-        data.categories = ["Jan/12", "Apr/12", "Jul/12", "Oct/12", "Jan/13", "Apr/13", "Jul/13", "Oct/13", "Jan/14", "Apr/14", "Jul/14", "Oct/14", "Jan/15", "Apr/15", "Jul/15", "Oct/15", "Jan/16", "Apr/16", "Jul/16", "Oct/16", "Jan/17", "Apr/17", "Jul/17"];
-        //data.categories = ["Jan-12", "Apr-12", "Jul-12", "Oct-12", "Jan-13", "Apr-13", "Jul-13", "Oct-13", "Jan-14", "Apr-14", "Jul-14", "Oct-14", "Jan-15", "Apr-15", "Jul-15", "Oct-15", "Jan-16", "Apr-16", "Jul-16", "Oct-16", "Jan-17", "Apr-17", "Jul-17"];
-    }
-
-    if (typeof data.startAt != "undefined") {
-        var dayms = 86400000;
-        var beginningD = new Date("1/" + data.categories[0]);
-        var startD = new Date("1/" + data.startAt);
-        var months = monthDiff(beginningD, startD);
-        var quarters = months / 4;
         if (type == "long") {
-            data.earlyData.reverse();
-            data.actualData.reverse();
-            data.delayedData.reverse();
-            for (var i = 0; i < months; i++) {
-                data.earlyData.push(null)
-                data.actualData.push(null)
-                data.delayedData.push(null)
-            }
-            data.earlyData.reverse();
-            data.actualData.reverse();
-            data.delayedData.reverse();
+            data.categories = ["Jan/12", "Feb/12", "Mar/12", "Apr/12", "May/12", "Jun/12", "Jul/12", "Aug/12", "Sep/12", "Oct/12", "Nov/12", "Dec/12", "Jan/13", "Feb/13", "Mar/13", "Apr/13", "May/13", "Jun/13", "Jul/13", "Aug/13", "Sep/13", "Oct/13", "Nov/13", "Dec/13", "Jan/14", "Feb/14", "Mar/14", "Apr/14", "May/14", "Jun/14", "Jul/14", "Aug/14", "Sep/14", "Oct/14", "Nov/14", "Dec/14", "Jan/15", "Feb/15", "Mar/15", "Apr/15", "May/15", "Jun/15", "Jul/15", "Aug/15", "Sep/15", "Oct/15", "Nov/15", "Dec/15", "Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16", "Jul/16", "Aug/16", "Sep/16", "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17"];
         } else if (type == "short") {
-            data.earlyData.reverse();
-            data.actualData.reverse();
-            data.delayedData.reverse();
-            for (var i = 0; i < quarters; i++) {
-                data.earlyData.push(null)
-                data.actualData.push(null)
-                data.delayedData.push(null)
-            }
-            data.earlyData.reverse();
-            data.actualData.reverse();
-            data.delayedData.reverse();
+            data.categories = ["Jan/12", "Apr/12", "Jul/12", "Oct/12", "Jan/13", "Apr/13", "Jul/13", "Oct/13", "Jan/14", "Apr/14", "Jul/14", "Oct/14", "Jan/15", "Apr/15", "Jul/15", "Oct/15", "Jan/16", "Apr/16", "Jul/16", "Oct/16", "Jan/17", "Apr/17", "Jul/17"];
+            //data.categories = ["Jan-12", "Apr-12", "Jul-12", "Oct-12", "Jan-13", "Apr-13", "Jul-13", "Oct-13", "Jan-14", "Apr-14", "Jul-14", "Oct-14", "Jan-15", "Apr-15", "Jul-15", "Oct-15", "Jan-16", "Apr-16", "Jul-16", "Oct-16", "Jan-17", "Apr-17", "Jul-17"];
         }
-    }
 
-    if (trend == "up") {
-        data.trendColor = "#00B050";
-        data.arrowDirection = "up";
-    } else if (trend == "down") {
-        data.trendColor = "#FF0000"
-        data.arrowDirection = "down";
-    } else if (trend == "right") {
-        data.trendColor = "#2E9AFE"
-        data.arrowDirection = "right";
-    }
+        if (typeof data.startAt != "undefined") {
+            var dayms = 86400000;
+            var beginningD = new Date("1/" + data.categories[0]);
+            var startD = new Date("1/" + data.startAt);
+            var months = monthDiff(beginningD, startD);
+            var quarters = months / 4;
+            if (type == "long") {
+                data.earlyData.reverse();
+                data.actualData.reverse();
+                data.delayedData.reverse();
+                for (var i = 0; i < months; i++) {
+                    data.earlyData.push(null)
+                    data.actualData.push(null)
+                    data.delayedData.push(null)
+                }
+                data.earlyData.reverse();
+                data.actualData.reverse();
+                data.delayedData.reverse();
+            } else if (type == "short") {
+                data.earlyData.reverse();
+                data.actualData.reverse();
+                data.delayedData.reverse();
+                for (var i = 0; i < quarters; i++) {
+                    data.earlyData.push(null)
+                    data.actualData.push(null)
+                    data.delayedData.push(null)
+                }
+                data.earlyData.reverse();
+                data.actualData.reverse();
+                data.delayedData.reverse();
+            }
+        }
 
+        if (trend == "up") {
+            data.trendColor = "#00B050";
+            data.arrowDirection = "up";
+        } else if (trend == "down") {
+            data.trendColor = "#FF0000"
+            data.arrowDirection = "down";
+        } else if (trend == "right") {
+            data.trendColor = "#2E9AFE"
+            data.arrowDirection = "right";
+        }
+        if (view == "1") {
+            return new mpxd.modules.scurve.ScurveView1({data: data, el: el});
+        } else if (view == "2") {
+            return new mpxd.modules.scurve.ScurveView2({data: data, el: el, componentSelector: componentSelector});
+        }
 
-    if (view == "1") {
-        return new mpxd.modules.scurve.ScurveView1({data: data, el: el});
-    } else if (view == "2") {
-        return new mpxd.modules.scurve.ScurveView2({data: data, el: el, componentSelector: componentSelector});
-    }
 }
 
 
@@ -3718,21 +3717,21 @@ $(function () {
         //console.log(State);
     });
 
-
-    $('#data_date').datepicker({
-        dateFormat: 'dd-MM-yy',
-        beforeShowDay: enableAllTheseDays,
-        nextText: "",
-        prevText: "",
-        altField: '#data_date_selected',
-        altFormat: "dd-M-y",
-        onSelect: function (dateText, inst) {
-            p = reallink.substr(0, (reallink.indexOf('?') == -1) ? reallink.length : reallink.indexOf('?'));
-            var selected = $('#data_date_selected').val();
-            loadPage(p + '?date=' + selected)
-
-        }
-    });
+//Sebin Commented
+    //$('#data_date').datepicker({
+    //    dateFormat: 'dd-MM-yy',
+    //    beforeShowDay: enableAllTheseDays,
+    //    nextText: "",
+    //    prevText: "",
+    //    altField: '#data_date_selected',
+    //    altFormat: "dd-M-y",
+    //    onSelect: function (dateText, inst) {
+    //        p = reallink.substr(0, (reallink.indexOf('?') == -1) ? reallink.length : reallink.indexOf('?'));
+    //        var selected = $('#data_date_selected').val();
+    //        loadPage(p + '?date=' + selected)
+    //
+    //    }
+    //});
 
     $('#date_selector').on('click', function () {
         $('#data_date').datepicker("show");

@@ -56,7 +56,7 @@ $route['portlet/(:any)/(:any)'] = 'dashboard/portlet/$1/$2';
 $route['setapi/(:any)'] = 'dashboard/setapi/$1';
 $route['draw'] = 'dashboard/draw';
 $route['save'] = 'dashboard/save';
-$route['front'] = 'dashboard/front';
+$route['dashboard'] = 'dashboard/dashboard';
 
 $route['login'] = 'dashboard/login';
 $route['logout'] = 'dashboard/logout';
