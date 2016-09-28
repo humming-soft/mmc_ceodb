@@ -148,10 +148,12 @@
     margin-right: 5px;
     display: block;
     float: right;
-    background: white;
-    border: 1px solid gold;
-    color: black;
+    background: #000f1e;
+    border: 1px solid #1E2B38;
+    color: #e7e6e6;
     text-align: center;
+    line-height: 22px;
+    font-size: 16px;
 }
 
 .header-button.header-button-move { cursor: move; }

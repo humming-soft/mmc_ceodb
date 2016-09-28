@@ -10,9 +10,9 @@ html, body, input {
 }
 
 h1 {font-size: 2em; font-weight: bold;}
-h2 {font-size: 1.7em; font-weight: ;}
+h2 {font-size: 1.7em; font-weight: 500 ;}
 h3 {font-size: 1.4em; font-style: italic;}
-h4 {font-size: 1.1em; font-weight: ;}
+h4 {font-size: 1.1em; font-weight: 500;}
 
 a {
 	font-style: normal;
@@ -133,6 +133,7 @@ div#header_datetime {
 
 #header_menu a {
 	color: #fff;
+    outline: 0;
 	text-decoration: none;
 }
 

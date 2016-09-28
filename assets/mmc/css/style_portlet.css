@@ -395,8 +395,8 @@ span.scurve_arrow {
 	font-size: 1.2em;
 	display: block;
 	position: absolute;
-	top: 9px;
-	right: 12px;
+	top: 4px;
+	right: 5px;
 	border-radius: 5px;
 	background: #113;
 }

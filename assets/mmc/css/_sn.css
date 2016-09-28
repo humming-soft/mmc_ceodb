@@ -26,7 +26,9 @@ div.loading_pad span {
 .loading_pad_gohide{
     display: none;
 }
-
+a{
+    outline: 0;
+}
 /*breadcrumbs*/
 
 .custom_breadcrumb {
