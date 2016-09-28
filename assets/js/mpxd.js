@@ -97,7 +97,8 @@ mpxd.templateURLs = {
     "stcs_map": {"templateURL": "assets/templates/stcs_map.html"},
     "stcs_map_bg": {"templateURL": "assets/templates/stcs_map_bg.html"},
     "trainborne_overall_et": {"templateURL": "assets/templates/trainborne_overall_et.html"},
-    "area_progress": {"templateURL": "assets/templates/area_progress.html"}
+    "area_progress": {"templateURL": "assets/templates/area_progress.html"},
+	"viaducts_compare":{"templateURL": "assets/templates/viaducts_comparison.html"}
 
 }
 

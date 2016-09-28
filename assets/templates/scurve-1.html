@@ -2,30 +2,49 @@
     <div class="row content">
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-area-chart" aria-hidden="true"></i>
-            S-Curve
+            <% if (typeof(data.date) !== "undefined") { %>
+            <%=data.title%> <h2 class="asof">(As of <%=data.date%>)</h2>
+            <% } else {%>
+            <%=data.title%>
+            <% } %>
         </div>
         <span class="scurve_arrow scurve_arrow_up"><i class="fa fa-arrow-up" aria-hidden="true"></i></span>
         <div class="col-md-12 portlet_content">
             <div class="row">
-                <div class="col-md-12 portlet_scurve_graph">graph shown here
-                    <div class="scurve-1-item scurve-1-item-5 scurve-background-green" style=""><span class="scurve-1-item-data scurve-1-data-color excel-d1"><%=data.currentEarly%></span><span class="scurve-1-item-title">% Early</span></div>
-                    <div class="scurve-1-item scurve-1-item-5 scurve-background-red" style=""><span class="scurve-1-item-data scurve-1-data-color excel-d2"><%=data.currentActual%></span><span class="scurve-1-item-title">% Actual</span> </div>
-                    <div class="scurve-1-item scurve-1-item-5 scurve-background-blue" style=""><span class="scurve-1-item-data scurve-1-data-color excel-d3"><%=data.currentLate%></span><span class="scurve-1-item-title">% Late</span></div>
-
-                    <div class="scurve-1-item scurve-1-item-6"><span style="color: #ffd461">Variance</span><br/>
-                        <table style="width:100%; text-align:center; font-size: 100%;">
-                            <tbody>
-                            <!--<tr><td style="padding-bottom:10px">Early</td><td style="padding-bottom:10px">Late</td></tr>-->
-                            <tr><td class="scurve-1-table-data scurve-font-green excel-d4"><strong><%=data.varEarly%></strong> <span style="font-size: 10px;color: #FFF;">E</span></td><td class="scurve-1-table-data scurve-font-blue excel-d5"><strong><%=data.varLate%></strong> <span style="font-size: 10px;color: #FFF">L</span></td></tr>
-
-                            </tbody>
-                        </table>
+                <div class="col-md-3 portlet_scurve_data">
+                    <div class="row">
+                        <div class="col-md-12 item psd_data_type1">
+                            <span class="item_title">Early</span>
+                            <span class="item_value iv_early"><%=data.currentEarly%>%</span>
+                        </div>
+                        <div class="col-md-12 item psd_data_type1">
+                            <span class="item_title">Actual</span>
+                            <span class="item_value iv_actual"><%=data.currentActual%>%</span>
+                        </div>
+                        <div class="col-md-12 item psd_data_type1">
+                            <span class="item_title">Late</span>
+                            <span class="item_value iv_late"><%=data.currentLate%>%</span>
+                        </div>
+                        <div class="col-md-12 item psd_data_type2">
+                            <span class="item_title">Variance</span>
+                            <div class="">
+                                <div class="col-md-6 item">
+                                    <span class="item_title_variance">Early</span>
+                                    <span class="item_value_variance iv_early"><%=data.varEarly%></span>
+                                </div>
+                                <div class="col-md-6 item">
+                                    <span class="item_title_variance">Late</span>
+                                    <span class="item_value_variance iv_late"><%=data.varLate%></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
-
-                    <div class="scurve-1-item scurve-1-item-5" style="width:10%; border-left: 1px solid rgba(128, 128, 128, 0.5);"><object style="margin: 8px 0px" data="<%=baseURL%>assets/img/<%=data.arrowDirection%>arrow_20x20.svg" class="svg-arrow-down" type="image/svg+xml" onLoad="$(this).contents().find('#path14').css('fill', '<%=data.trendColor%>')"></object></div>
-
+                </div>
+                <div class="col-md-9 portlet_scurve_graph pl0">
+                    <!--<div class="col-xs-12">-->
+                        <div class="chart chart-scurve" id="chart_<%=data.id%>">
+                        </div>
+                    <!--</div>-->
                 </div>
             </div>
         </div>

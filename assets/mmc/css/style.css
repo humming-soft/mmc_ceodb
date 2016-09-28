@@ -143,6 +143,11 @@ div#header_datetime {
 	font-size: .8em;
 	background: rgba(0,153,255,.25);
 }
+
+.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
 	#header_menu span.hm_button i {
 		padding: 0 7px 0 0;
 	}
