@@ -2,7 +2,6 @@ jQuery googleslides
 ===================
 A jQuery plugin to display your Google Photos.
 
-Note:-
 
 Documentation and Demos
 -----------------------
