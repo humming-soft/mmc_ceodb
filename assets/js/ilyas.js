@@ -2729,16 +2729,16 @@ mpxd.modules.viaduct_pier_view.View = Backbone.View.extend({
          .attr("cy", function(d) { return d.y; })
          .call(drag);
          });*/
-
-
     }
 });
 
 
-mpxd.constructors.viaduct_pier_view = function (items) {
+/*mpxd.constructors.viaduct_pier_view = function (items) {
+    //Commented By Sebin
     var el = "#portlet_" + items.id
     return new mpxd.modules.viaduct_pier_view.View({data: items, el: el});
-}
+    // mpxd.modules.general.GenerateGeneralview(items);
+}*/
 
 
 mpxd.modules.scurve = {};

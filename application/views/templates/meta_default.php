@@ -27,7 +27,8 @@
 <!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/highcharts/highstock.js"></script>-->
 
 <!-- d3 -->
-<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/package/d3/d3.min.js"></script>
+<!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/d3/d3.min.js"></script>-->
+<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/js/d3.js"></script>
 
 <!-- font -->
 <link href='https://fonts.googleapis.com/css?family=Exo+2:400,800,600' rel='stylesheet' type='text/css'>

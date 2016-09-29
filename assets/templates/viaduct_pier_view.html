@@ -1,69 +1,28 @@
-
-<style>
-
-.dot circle {
-  fill: lightsteelblue;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
-
-.dot circle.dragging {
-  fill: red;
-  stroke: brown;
-}
-
-.axis line {
-  fill: none;
-  stroke: #ddd;
-  shape-rendering: crispEdges;
-  vector-effect: non-scaling-stroke;
-}
-
-.legendimg {
-	width:20px; height:40px; margin: auto 15px;
-}
-</style>
-<script>
-
-</script>
-
-
-
-<div class="header bg-dot30">
-    <h2><%=data.title%></h2>
-    <i class="header-icon fa fa-check-square-o"></i>
-</div>
-<div class="content" style="background: none;/*#1d2a34*/">
-<% var isPrint = (typeof getUrlParameter("print") != "undefined"); if (isPrint) { %>
-
-	<div class="pier_legend" style="background:#101010;">
-	<div style="width: 250px; margin:auto; height: 200px; margin-top: 20px; background:#000000; position:relative; padding:20px;">
-	<div style="position:absolute; font-size:26px;">Legend</div>
-	<div style="position:absolute; font-size:18px; top:60px;">
-		<table><tbody>
-		<tr><td><div class="legendimg" style="background:rgb(90, 255, 92)"></div></td><td> Completed</td></tr>
-		<tr><td><div class="legendimg" style="background:rgb(255, 198, 53)"></div></td><td> Under construction</td></tr>
-		<tr><td><div class="legendimg" style="background:#CCCCCC"></div></td><td> Not yet started</td></tr>
-		</tbody></table>
+<div class="col-md-12 portlet portlet_pierchart">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-cube" aria-hidden="true"></i>
+			Pier Chart
+		</div>
+		<div class="col-md-11 portlet_content">
+			<div class="legend_pierchart">
+				<span class="brick brick1"></span>
+				<span class="item_title">Not Yet Started</span>
+				<span class="brick brick2"></span>
+				<span class="item_title">Under Construction</span>
+				<span class="brick brick3"></span>
+				<span class="item_title">Complete</span>
+				<span class="brick delay_mark"></span>
+				<span class="item_title">Delayed</span>
+				<span class="brick legend_station"></span>
+				<span class="item_title">Station</span>
+				<span class="brick legend_special_span"></span>
+				<span class="item_title">Special Span</span>
+			</div>
+			<div class="chart_pierchart">
+				<div id="pier_plate_v201" class="pier_plate">
+				</div>
+			</div>
+		</div>
 	</div>
-	
-	</div></div>
-	<div class="piermap" style="width:auto;background:#777777;height:90%;overflow-y:scroll"></div>
-	
-	
-<% } else { %>
-	<div class="pier_legend" style="width:300px;height:90%;background:#101010;float:right;"><div style="width: 250px; margin:auto; height: 200px; margin-top: 20px; background:#000000; position:relative; padding:20px;">
-	<div style="position:absolute; font-size:26px;">Legend</div>
-	<div style="position:absolute; font-size:18px; top:60px;">
-		<table><tbody>
-		<tr><td><div class="legendimg" style="background:rgb(90, 255, 92)"></div></td><td> Completed</td></tr>
-		<tr><td><div class="legendimg" style="background:rgb(255, 198, 53)"></div></td><td> Under construction</td></tr>
-		<tr><td><div class="legendimg" style="background:#CCCCCC"></div></td><td> Not yet started</td></tr>
-		</tbody></table>
-	</div>
-	
-	</div></div>
-	<div class="piermap" style="width:auto;background:#777777;height:90%;overflow-y:scroll"></div>
-	
-<% } %>
 </div>
