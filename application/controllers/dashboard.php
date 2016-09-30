@@ -10,8 +10,8 @@ class Dashboard extends CI_Controller {
     }
 
     public function index($slug = FALSE) {
-        //print_r($this->session->all_userdata());
-        if ($this->session->userdata('loggedin')) { // Redirects logged in user
+        //print_r($this->session->userdata());
+        if ($this->session->userdata('uid')!=null) { // Redirects logged in user
             return redirect('dashboard');
         }
         //$this->load->view('templates/header', $data);
@@ -40,6 +40,8 @@ class Dashboard extends CI_Controller {
                 "usergroup" => $result["user_group"],
                 "allowed_page" => json_encode($this->dashboard_model->menuPermissionBySlugAndPage($result["user_group"]))
             ));
+//            print_r($this->session->userdata());
+//            exit;
             $success = 1;
             //logging to be done later. sleepy
         } else {
