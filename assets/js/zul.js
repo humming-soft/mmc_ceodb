@@ -1094,7 +1094,8 @@ mpxd.modules.progress.ProgressView = Backbone.View.extend({
                 spacingTop: 0,
                 spacingBottom: 0,
                 spacingLeft: 0,
-                spacingRight: 0
+                spacingRight: 0,
+				height: 250
             },
             title: {
                 text: currentProgress + '%',
@@ -1123,11 +1124,12 @@ mpxd.modules.progress.ProgressView = Backbone.View.extend({
                     },
                     startAngle: 0,
                     endAngle: 360,
+					size:'100%'
                 }
             },
             series: [{
                     type: 'pie',
-                    innerSize: '98%',
+                    innerSize: '90%',
                     data: [
                         {
                             name: 'Completed',
@@ -1190,7 +1192,7 @@ mpxd.modules.general.GeneralView = Backbone.View.extend({
         var html = mpxd.getTemplate(that.data.type);
         template = _.template(html, {data: that.data});
         that.$el.html(template);
-        that.$el.find('.content').mCustomScrollbar({theme: 'rounded'});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme: 'rounded'});
             if (that.data.type === 'slider') {
                 // modified by agaile to show image slider from local repository : 31/05/2016 : START
                 //console.log('slider_agaile');
@@ -1326,12 +1328,6 @@ mpxd.constructors.commercial = function(data) {
 }
 
 mpxd.constructors.hsse = function(data) {
-    mpxd.modules.general.GenerateGeneralview(data);
-}
-
-mpxd.constructors.kpi = function(data) {
-    //console.log(data);
-    //console.log('here');
     mpxd.modules.general.GenerateGeneralview(data);
 }
 

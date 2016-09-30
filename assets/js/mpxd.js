@@ -42,7 +42,6 @@ mpxd.templateURLs = {
     "viaduct_pier_view": {"templateURL": "assets/templates/viaduct_pier_view.html"},
 	"viaducts_compare":{"templateURL": "assets/templates/viaducts_comparison.html"},
 	"kpi_viaducts":{"templateURL": "assets/templates/kpi_viaducts.html"}
-
 }
 
 mpxd.templateData = {};

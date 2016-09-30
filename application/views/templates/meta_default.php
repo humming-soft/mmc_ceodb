@@ -19,7 +19,11 @@
 <!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/js/jquery-ui.min.js"></script>-->
 
 <!-- highcharts -->
+<!--<script type=text/javascript src=--><?php //echo $this->config->base_url(); ?><!--assets/highcharts/js/highcharts.js></script>-->
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/package/highcharts/highcharts.js"></script>
+<script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/highcharts/js/dark-highcharts.js></script>
+<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/package/highcharts/no-data-to-display.js"></script>
+<!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/highcharts/highcharts.js"></script>-->
 <!--Sebin Commented-->
 <!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/highcharts/highcharts-3d.js"></script>-->
 <!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/highcharts/highcharts-more.js"></script>-->

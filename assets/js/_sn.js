@@ -3,16 +3,23 @@ For     : Backbone Constructors, Views and the associated functions
 Date    : 14/07/2016*/
 
 mpxd.constructors.viaducts_compare = function(data) {
-    mpxd.modules.general.GenerateGeneralview(data);
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.viaducts.kpi({data: data, el: el});
 }
 mpxd.constructors.kpi_viaducts = function(data) {
-    mpxd.modules.general.GenerateGeneralview(data);
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.viaducts.kpi_viaducts({data: data, el: el});
 }
 mpxd.constructors.viaduct_pier_view = function(data) {
     var el = "#portlet_" + data.id;
     return new mpxd.modules.piers.viaduct_pier_view({data: data, el: el});
 }
+mpxd.constructors.kpi = function(data) {
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.viaducts.compare({data: data, el: el});
+}
 mpxd.modules.piers = {}
+mpxd.modules.viaducts = {}
 mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
     initialize: function (options) {
         this.data = options.data;
@@ -22,7 +29,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
         var html = mpxd.getTemplate(that.data.type);
         template = _.template(html, {data: that.data});
         that.$el.html(template);
-        // that.$el.find('.content').mCustomScrollbar({theme: 'rounded'});
+        // that.$el.find('.portlet_content').mCustomScrollbar({theme: 'rounded'});
 
 
         var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
@@ -881,5 +888,225 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
 
             console.log('###################################')
         }
+    }
+});
+mpxd.modules.viaducts.kpi = Backbone.View.extend({
+    initialize: function (options) {
+        this.data = options.data;
+        this.render();
+    }, render: function () {
+        var that = this;
+        var html = mpxd.getTemplate(that.data.type);
+        template = _.template(html, {data: that.data});
+        that.$el.html(template);
+        that.$el.find('.portlet_content').mCustomScrollbar({theme: 'rounded'});
+        // for Demo
+        var a=[10,20,30,40];
+       for(var i=0;i<4;i++) {
+           that.$el.find('#chart_' + a[i]).highcharts({
+               chart: {
+                   plotBackgroundColor: null,
+                   plotBorderWidth: 0,
+                   plotShadow: false,
+                   margin: [0, 0, 0, 0],
+                   spacingTop: 0,
+                   spacingBottom: 0,
+                   spacingLeft: 0,
+                   spacingRight: 0,
+                   height: 200
+               },
+               title: {
+                   text: 30 + '%',
+                   style: {
+                       color: '#9EDD2E',
+                       fontSize: '250%',
+                       fontWeight: 'bold'
+                   },
+                   align: 'center',
+                   verticalAlign: 'middle',
+                   y: 10
+               },
+               tooltip: {
+                   pointFormat: '{point.percentage:.1f}%</b>'
+               },
+               plotOptions: {
+                   pie: {
+                       dataLabels: {
+                           enabled: false,
+                           distance: -50,
+                           style: {
+                               fontWeight: 'bold',
+                               color: 'white',
+                               textShadow: '0px 1px 2px black'
+                           }
+                       },
+                       startAngle: 0,
+                       endAngle: 360,
+                       size: '100%'
+                   }
+               },
+               series: [{
+                   type: 'pie',
+                   innerSize: '90%',
+                   data: [
+                       {
+                           name: 'Completed',
+                           y: 30,
+                           color: '#15A6E9'
+                       },
+                       {
+                           name: 'Remaining',
+                           y: 70,
+                           color: 'rgba(0,0,0,0.2)'
+                       },
+                   ]
+               }]
+               ,
+               credits: {
+                   enabled: false
+               },
+           });
+       }
+    }
+});
+mpxd.modules.viaducts.kpi_viaducts = Backbone.View.extend({
+    initialize: function (options) {
+        this.data = options.data;
+        this.render();
+    }, render: function () {
+        var that = this;
+        var html = mpxd.getTemplate(that.data.type);
+        template = _.template(html, {data: that.data});
+        that.$el.html(template);
+        that.$el.find('#bar-line-chart').highcharts({
+            chart: {
+                zoomType: 'xy',
+                backgroundColor: '#222'
+            },
+            colors: ['#91e8e1', '#90ed7d'],
+
+            title: {
+                text: '',
+                x: -20 //center
+            },
+            xAxis: [{
+                categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                labels: {
+                    // rotation: 270,
+                    //step: 3,
+                    style: {
+                        color: '#ffd461',
+                        font: '11px Trebuchet MS, Verdana, sans-serif'
+                    }
+                }
+            }],
+            yAxis: [{ // Primary yAxis
+                labels: {
+                    style: {
+                        color: '#ffd461',
+                        font: '11px Trebuchet MS, Verdana, sans-serif'
+                    }
+                },
+                title: {
+                    text: '%',
+                    style: {
+                        color: '#ffd461',
+                        font: '11px Trebuchet MS, Verdana, sans-serif'
+                    }
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#333'
+                }],
+                gridLineColor: '#333',
+                min: 0
+            },{ // Secondary yAxis
+                title: {
+                    text: '',
+                    style: {
+                        color: '#ffd461',
+                        font: '11px Trebuchet MS, Verdana, sans-serif'
+                    }
+                },
+                min: 0,
+                labels: {
+                    format: '{value} %',
+                    style: {
+                        color: '#ffd461',
+                        font: '11px Trebuchet MS, Verdana, sans-serif',
+                        display: 'none'
+                    }
+                },
+                opposite: true
+            }],
+            tooltip: {
+                shared: true
+            },
+            // plotOptions: {
+            //     bar: {
+            //         dataLabels: {
+            //             enabled: true
+            //         }
+            //     }
+            // },
+            series: [
+                {
+                    name: 'suff1',
+                    type: 'column',
+                    yAxis: 1,
+                    data: [20, 25, 10,30,80, 20, 25, 10,10],
+                    tooltip: {
+                        valueSuffix: ' %'
+                    }
+                },
+                {
+                    name: 'NS',
+                    type: 'line',
+                    data: [21,30,40,30],
+                    color: '#fb2b20',
+                    tooltip: {
+                        valueSuffix: '%'
+                    }
+                },
+                {
+                    name: 'NS2',
+                    type: 'line',
+                    data: [24,50,43,34,78, 40,65,77,90,75,84,95],
+                    color: '#20d1fb',
+                    tooltip: {
+                        valueSuffix: '%'
+                    }
+                },
+                {
+                    name: 'NS3',
+                    type: 'line',
+                    data: [10,20,30,40,50, 65,75,84,95,85,94,98],
+                    tooltip: {
+                        valueSuffix: '%'
+                    }
+                }],
+            legend: {
+                enabled: false,
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            credits: {
+                enabled: false
+            }
+        });
+    }
+});
+mpxd.modules.viaducts.compare = Backbone.View.extend({
+    initialize: function (options) {
+        this.data = options.data;
+        this.render();
+    }, render: function () {
+        var that = this;
+        var html = mpxd.getTemplate(that.data.type);
+        template = _.template(html, {data: that.data});
+        that.$el.html(template);
     }
 });

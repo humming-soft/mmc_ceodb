@@ -1,5 +1,20 @@
 /*Loader*/
-
+.block {
+    /*margin-bottom: 20px;*/
+    /*float: left;*/
+    width: 100%;
+    /*height: 100%;*/
+    position: relative;
+}
+.block .content {
+    /*padding: 10px;*/
+    /*height: 91%;*/
+    border: none !important;
+    overflow: auto;
+}
+.chart-scurve2 {
+    margin-top: 20px;
+}
 div.loading_pad span p{
     font-size: 16px;
     margin: 0 auto;

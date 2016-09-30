@@ -300,7 +300,8 @@ div.portlet_images div.content {
 div.portlet_images div.portlet_content {
 	padding-top: 10px;
 	padding-bottom: 10px;
-	height: 439px;
+	/*height: 439px;*/
+	height: 100%;
 }
 div.portlet_images div.portlet_title {
 	color: #fff;
