@@ -2,7 +2,7 @@
 For     : Backbone Constructors, Views and the associated functions
 Date    : 14/07/2016*/
 
-mpxd.constructors.viaducts_compare = function(data) {
+mpxd.constructors.kpi = function(data) {
     var el = "#portlet_" + data.id;
     return new mpxd.modules.viaducts.kpi({data: data, el: el});
 }
@@ -14,7 +14,7 @@ mpxd.constructors.viaduct_pier_view = function(data) {
     var el = "#portlet_" + data.id;
     return new mpxd.modules.piers.viaduct_pier_view({data: data, el: el});
 }
-mpxd.constructors.kpi = function(data) {
+mpxd.constructors.viaducts_compare = function(data) {
     var el = "#portlet_" + data.id;
     return new mpxd.modules.viaducts.compare({data: data, el: el});
 }
