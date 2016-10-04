@@ -919,7 +919,7 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
                    text: 30 + '%',
                    style: {
                        color: '#9EDD2E',
-                       fontSize: '250%',
+                       fontSize: '150%',
                        fontWeight: 'bold'
                    },
                    align: 'center',
@@ -934,6 +934,7 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
                        dataLabels: {
                            enabled: false,
                            distance: -50,
+
                            style: {
                                fontWeight: 'bold',
                                color: 'white',
@@ -942,17 +943,22 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
                        },
                        startAngle: 0,
                        endAngle: 360,
+                       center: ['50%', '50%'],
                        size: '100%'
                    }
                },
                series: [{
                    type: 'pie',
-                   innerSize: '90%',
+                   size: '60%',
+                   innerSize: '85%',
+                   style: {
+                       color: 'white'
+                   },
                    data: [
                        {
                            name: 'Completed',
                            y: 30,
-                           color: '#15A6E9'
+                           color: '#fc0'
                        },
                        {
                            name: 'Remaining',
@@ -960,8 +966,23 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
                            color: 'rgba(0,0,0,0.2)'
                        },
                    ]
-               }]
-               ,
+               },{
+                   type: 'pie',
+                   size: '80%',
+                   innerSize:  '85%',
+                   data: [
+                       {
+                           name: 'Completed',
+                           y: 70,
+                           color: '#0d6ee2'
+                       },
+                       {
+                           name: 'Remaining',
+                           y: 30,
+                           color: 'rgba(0,0,0,0.2)'
+                       },
+                   ]
+               }],
                credits: {
                    enabled: false
                },
@@ -1108,5 +1129,200 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
         var html = mpxd.getTemplate(that.data.type);
         template = _.template(html, {data: that.data});
         that.$el.html(template);
+        that.$el.find('.portlet_content').mCustomScrollbar({theme: 'rounded'});
+        // for Demo
+        var a=[10,20,30,40];
+        for(var i=0;i<4;i++) {
+            that.$el.find('#chart_' + a[i]).highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false,
+                    margin: [0, 0, 0, 0],
+                    spacingTop: 0,
+                    spacingBottom: 0,
+                    spacingLeft: 0,
+                    spacingRight: 0,
+                    height: 150
+                },
+                title: {
+                    text: 30 + '%',
+                    style: {
+                        color: '#9EDD2E',
+                        fontSize: '150%',
+                        fontWeight: 'bold'
+                    },
+                    align: 'center',
+                    verticalAlign: 'middle',
+                    y: 10
+                },
+                tooltip: {
+                    pointFormat: '{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        dataLabels: {
+                            enabled: false,
+                            distance: -50,
+
+                            style: {
+                                fontWeight: 'bold',
+                                color: 'white',
+                                textShadow: '0px 1px 2px black'
+                            }
+                        },
+                        startAngle: 0,
+                        endAngle: 360,
+                        center: ['50%', '50%'],
+                        size: '100%'
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    size: '60%',
+                    innerSize: '85%',
+                    style: {
+                        color: 'white'
+                    },
+                    data: [
+                        {
+                            name: 'Completed',
+                            y: 30,
+                            color: '#fc0'
+                        },
+                        {
+                            name: 'Remaining',
+                            y: 70,
+                            color: 'rgba(0,0,0,0.2)'
+                        },
+                    ]
+                },{
+                    type: 'pie',
+                    size: '80%',
+                    innerSize:  '85%',
+                    data: [
+                        {
+                            name: 'Completed',
+                            y: 70,
+                            color: '#0d6ee2'
+                        },
+                        {
+                            name: 'Remaining',
+                            y: 30,
+                            color: 'rgba(0,0,0,0.2)'
+                        },
+                    ]
+                }],
+                credits: {
+                    enabled: false
+                },
+            });
+        }
+        var chart = new Highcharts.Chart({
+            title: {
+                text: '',
+                x: -20 //center
+            },
+            xAxis: {
+                categories: ["Jan/12", "Feb/12", "Mar/12", "Apr/12", "May/12", "Jun/12", "Jul/12", "Aug/12", "Sep/12", "Oct/12", "Nov/12", "Dec/12", "Jan/13", "Feb/13", "Mar/13", "Apr/13", "May/13", "Jun/13", "Jul/13", "Aug/13", "Sep/13", "Oct/13", "Nov/13", "Dec/13", "Jan/14", "Feb/14", "Mar/14", "Apr/14", "May/14", "Jun/14", "Jul/14", "Aug/14", "Sep/14", "Oct/14", "Nov/14", "Dec/14", "Jan/15", "Feb/15", "Mar/15", "Apr/15", "May/15", "Jun/15", "Jul/15", "Aug/15", "Sep/15", "Oct/15", "Nov/15", "Dec/15", "Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16", "Jul/16", "Aug/16", "Sep/16", "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17"],
+                tickInterval: 3,
+                labels: {
+                    rotation: 270,
+                    //step: 3,
+                    style: {
+                        color: '#ffd461',
+                        font: '11px Trebuchet MS, Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                tickInterval: 10,
+                labels: {
+                    style: {
+                        color: '#ffd461',
+                        font: '11px Trebuchet MS, Verdana, sans-serif'
+                    }
+                },
+                title: {
+                    text: '%',
+                    style: {
+                        color: '#ffd461',
+                        font: '11px Trebuchet MS, Verdana, sans-serif'
+                    },
+                    margin: 0
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#333'
+                }],
+                gridLineColor: '#333'
+            },
+            tooltip: {
+                enabled: true,
+                //formatter: function() { return this.series.name; },
+                //valueSuffix: '%'
+                formatter: function (evt) {
+                    var current = this.series.data;
+                    //console.log(current[current.length - 1].category);
+                    var tooltip;
+                    if (current[current.length - 1].series.name === 'Actual' && current[current.length - 1].y === this.y) {
+                        tooltip = '<span style="color:#EBFF00">Current ' + this.series.name + ' (' + current[current.length - 1].category + ')</span>: <b>' + current[current.length - 1].y + '%</b><br/>';
+                        return tooltip;
+                    }
+                    else {
+                        return false
+                    }
+                }
+            },
+            legend: {
+                enabled: false,
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Early',
+                data:  [0, 1.02, 1.28, 1.53, 2.05, 2.3, 2.56, 3.07, 3.58, 4.35, 5.12, 5.37, 5.88, 6.91, 7.42, 8.44, 9.72, 11.25, 12.79, 13.81, 14.58, 16.88, 18.16, 19.95, 21.23, 23.27, 24.81, 26.85, 29.99, 32.1, 33.89, 35.86, 37.48, 39.26, 39.81, 41.58, 41.98, 42.86, 43.95, 45.26, 46.74, 48.78, 51.34, 54.13, 56.31, 60.1, 63.28, 65.04, 67.11, 67.34, 69, 73.23, 77.49, 80.83, 84.19, 87.99, 91.92, 95.32, 97.84, 98.77, 98.87, 98.96, 99.12, 99.49, 99.77, 100, 100, 100, 100],
+                color: '#04B152',
+                enableMouseTracking: false
+            }, {
+                name: 'Late',
+                data: [0, 0.26, 0.51, 0.77, 1.03, 1.54, 2.05, 3.08, 4.62, 6.92, 9.74, 12.05, 14.62, 16.15, 18.21, 20, 22.05, 24.36, 26.67, 29.23, 31.54, 33.85, 35.9, 38.97, 41.28, 42.82, 45.13, 47.18, 50.02, 51.91, 53.54, 55.33, 57.12, 58.67, 59.81, 61.25, 62.05, 62.9, 64.01, 63.36, 64.52, 66.28, 67.76, 69.36, 70.34, 71.84, 74.01, 75.61, 76.46, 78.04, 79.09, 80.71, 83.25, 85.75, 88.05, 90.7, 92.81, 94.8, 96.45, 98.09, 98.73, 98.95, 99.36, 99.41, 99.67, 99.86, 99.89, 100, 100],
+                color: '#0070C0',
+                enableMouseTracking: false
+            }, {
+                name: 'Actual',
+                data: [0, 0, 0, 0.53, 0.79, 1.06, 1.32, 1.58, 1.85, 2.63, 3.67, 4.19, 5.49, 6.27, 7.31, 8.61, 10.17, 11.98, 13.54, 15.88, 17.95, 21.07, 22.63, 24.7, 26.52, 28.6, 30.15, 32.23, 34.99, 37.24, 39.55, 41.73, 43.52, 45.56, 47.12, 49.21, 50.33, 51.43, 52.8, 54.05, 55.09, 56.5, 58.2, 61.75, 64.57, 67.23, 70.24, 72.77, 75.85],
+                color: '#FF0000'
+                //enableMouseTracking: false,
+                /*events : {
+                 mouseOver: function() {
+                 console.log(this.yData[this.yData.length - 1]);
+                 }
+                 },*/
+            }],
+            plotOptions: {
+                series: {
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            chart: {
+                type: 'spline',
+                backgroundColor: '#222',
+                // renderTo: 'chart_' + that.data.id
+                renderTo: 'chart_88'
+            }
+
+
+        });
     }
 });

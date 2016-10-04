@@ -1838,6 +1838,7 @@ mpxd.modules.scurve.ScurveView1 = Backbone.View.extend({
         //console.log(options);
         this.data = options.data;
         this.render();
+
     },
     render: function () {
         var that = this;
@@ -1904,7 +1905,6 @@ mpxd.modules.scurve.ScurveView1 = Backbone.View.extend({
                     else {
                         return false
                     }
-                    ;
                 }
             },
             legend: {
