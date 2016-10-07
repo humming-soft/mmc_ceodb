@@ -144,6 +144,7 @@ info
 */
 div.portlet_info div.content {
 	background: #252237;
+	border-radius: 5px;
 }
 div.portlet_info div.portlet_content {
 }
@@ -205,6 +206,8 @@ div.portlet_info div.pier_chart {
 	position: absolute;
 	bottom: 5px;
 	right: 10px;
+	outline: 0;
+
 }
 	div.portlet_info span.iv_pierchart:hover {
 		cursor: pointer;
@@ -219,6 +222,7 @@ progress
 */
 div.portlet_progress div.content {
 	background: #252237;
+	border-radius: 5px;
 }
 div.portlet_progress div.portlet_content {
 }
@@ -233,6 +237,7 @@ keydates
 */
 div.portlet_keydates div.content {
 	background: #252237;
+	border-radius: 5px;
 }
 div.portlet_keydates div.portlet_content {
 	padding-top: 10px;
@@ -274,6 +279,7 @@ kpi
 */
 div.portlet_kpi div.content {
 	background: #252237;
+	border-radius: 5px;
 }
 div.portlet_kpi div.portlet_content {
 	padding-top: 10px;
@@ -296,6 +302,7 @@ images
 */
 div.portlet_images div.content {
 	background: #252237;
+	border-radius: 5px;
 }
 div.portlet_images div.portlet_content {
 	padding-top: 10px;
@@ -321,6 +328,7 @@ scurve
 
 div.portlet_scurve div.content {
 	background: #252237;
+	border-radius: 5px;
 }
 
 div.portlet_scurve_data div.row div.item {
@@ -415,6 +423,7 @@ summary
 */
 div.portlet_summary div.content {
 	background: #252237;
+	border-radius: 5px;
 }
 div.portlet_summary div.portlet_content {
 	padding-top: 10px;
@@ -550,6 +559,7 @@ pierchart
 /*general*/
 div.portlet_pierchart div.content {
 	background: #252237;
+	border-radius: 5px;
 }
 div.portlet_pierchart div.portlet_content {
 	padding-top: 10px;
@@ -827,14 +837,14 @@ span.content.station {
 	margin-left: 55px;
 	width: 120px;
 	height: 5px;
-	border-top: 6px solid #0ff;
+	border-top: 6px solid #0ff !important;
 }
 span.content.special_span {
 	position: absolute;
 	display: block;
 	width: 115px;
 	height: 5px;
-	border-top: 6px dotted #a0f;
+	border-top: 6px dotted #a0f !important;
 }
 
 span.content.station_title,
@@ -852,10 +862,8 @@ span.content.special_span_title {
 	span.content.special_span_title {
 		background: rgba(255,0,2565,.2);
 	}
-
-
-
-
+/*Added by Sebin*/
+/*On : 07-10-2016*/
 
 
 
