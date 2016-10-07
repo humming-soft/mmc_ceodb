@@ -11,10 +11,10 @@
 
 <!-- jquery -->
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/jquery-3.0.0.min.js"></script>
-<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/jquery-ui.js"></script>
 <script src="<?php echo $this->config->base_url(); ?>assets/mmc/package/malihu-custom-scrollbar-plugin-master/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/bootstrap.js"></script>
+<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/jquery-ui.js"></script>
 <!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/js/npm.js"></script>-->
 <!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/js/jquery-ui.min.js"></script>-->
 

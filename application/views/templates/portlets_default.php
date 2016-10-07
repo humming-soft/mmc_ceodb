@@ -1,5 +1,6 @@
 <!--<link media="screen, print" href=--><?php //echo $this->config->base_url(); ?><!--assets/css/stylesheets.css rel=stylesheet type=text/css />-->
 <!--<link media="screen, print" rel="stylesheet" href="--><?php //echo $this->config->base_url(); ?><!--assets/css/slippry.css">-->
+<link media="screen, print" rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/flick/jquery-ui.css" />
 <!--jsImageslider-->
 <link media="screen, print" rel="stylesheet" href="<?php echo $this->config->base_url(); ?>assets/js/plugins/jsImageSlider/js-image-slider.css" />
 <link media="screen, print" rel="stylesheet" href="<?php echo $this->config->base_url(); ?>assets/css/jquery.gridster.css">

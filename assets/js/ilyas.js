@@ -2659,7 +2659,7 @@ function relativeToAbsolute(url) {
     }
     return arr.join("/"); // Rebuild the url and return it.
 }
-
+enableDays = [];
 function loadPage(p, dontsavestate) {
     $("div#loading_pad").removeClass("loading_pad_gohide");
     reallink = p;
@@ -2700,7 +2700,7 @@ function loadPage(p, dontsavestate) {
     mpxd.getDateList("api/get?date_list=" + currentSlug, function (result) {
         var datelist = $("#date_list").empty();
         var curr_data_date = "";
-        enableDays = [];
+
 
         for (var i = 0; i < result.length; i++) {
             var date = result[i].date;
@@ -2712,12 +2712,13 @@ function loadPage(p, dontsavestate) {
 
             //Update the current date field
             if (getParameterByName("date") === date) {
-                $("#data_date").val(moment(getParameterByName("date"), "DD-MMM-YY").format("DD-MMMM-YYYY"));
+                $("#data_date").val(moment(getParameterByName("date"), "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
                 curr_data_date = date;
             }
         }
         if (getParameterByName("date").length == 0) {
-            $("#data_date").val(moment(result[0].date, "DD-MMM-YY").format("DD-MMMM-YYYY"));
+            console.log(result[0].date);
+            $("#data_date").val(moment(result[0].date, "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
             curr_data_date = result[0].date;
         }
         //Added by Sebin
@@ -2760,7 +2761,7 @@ function loadPage(p, dontsavestate) {
 
 function enableAllTheseDays(date) {
     var sdate = $.datepicker.formatDate('dd-M-y', date)
-    //console.log(sdate)
+    // console.log(enableDays);
     if ($.inArray(sdate, enableDays) != -1) {
         return [true];
     }
@@ -2807,25 +2808,25 @@ $(function () {
 
         //console.log(State);
     });
+    // $("#data_date").hide();
+    $('#data_date').datepicker({
+       dateFormat: "dd M yy",
+       beforeShowDay: enableAllTheseDays,
+       nextText: "",
+       prevText: "",
+       altField: '#data_date_selected',
+       altFormat: "dd-M-y",
+       onSelect: function (dateText, inst) {
+           p = reallink.substr(0, (reallink.indexOf('?') == -1) ? reallink.length : reallink.indexOf('?'));
+           var selected = $('#data_date_selected').val();
+           $("#date-display").text(selected);
+           loadPage(p + '?date=' + selected)
 
-//Sebin Commented
-    //$('#data_date').datepicker({
-    //    dateFormat: 'dd-MM-yy',
-    //    beforeShowDay: enableAllTheseDays,
-    //    nextText: "",
-    //    prevText: "",
-    //    altField: '#data_date_selected',
-    //    altFormat: "dd-M-y",
-    //    onSelect: function (dateText, inst) {
-    //        p = reallink.substr(0, (reallink.indexOf('?') == -1) ? reallink.length : reallink.indexOf('?'));
-    //        var selected = $('#data_date_selected').val();
-    //        loadPage(p + '?date=' + selected)
-    //
-    //    }
-    //});
+       }
+    });
 
     $('#date_selector').on('click', function () {
-        $('#data_date').datepicker("show");
+        $('#data_date').datepicker('show');
     })
 });
 

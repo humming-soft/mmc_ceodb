@@ -593,5 +593,23 @@ div#donut_plate > div.dp_bottom {
 	font-size: .8vw;
 }
 
+/*Added By Sebin*/
+
+#data_date{
+	/*cursor: pointer;*/
+	width: 75px;
+	text-align: center;
+	height: 23px;
+	/*float: right;*/
+	background-color: transparent;
+	border: none;
+	color: #fca;
+	font-size: .8em;
 
 
+}
+#data_date:focus{
+	outline: none;
+	color: transparent;
+	text-shadow: 0 0 0 #fca;
+}

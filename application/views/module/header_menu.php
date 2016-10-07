@@ -1,3 +1,8 @@
+<style>
+	div.ui-datepicker{
+		font-size:14px;
+	}
+</style>
 <div class="col-md-12">
 	<div class="col-md-3">
 		<div class="row">
@@ -12,8 +17,15 @@
 			<div class="col-md-5">
 				<div id="header_datetime">
 					<span class="hd_label hd_label_today"><i class="fa fa-calendar-o" aria-hidden="true"></i> Today: <span id="current_date">22 JUN 2016</span></span>
-					<span class="hd_label hd_label_data"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Data Date : 14 MAY 2016</span>
-					<span class="hd_button">Change</span>
+					<span class="hd_label hd_label_data"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Data Date :</span>
+						<input readonly="true" id="data_date" type="text" value="" placeholder="Data date" name="data-date">
+						<input type="hidden" id="data_date_selected" value=""/>
+						<div style="display: none;" class="input-group-btn">
+							<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">Date <span class="caret"></span></button>
+							<ul id="date_list" class="dropdown-menu">
+							</ul>
+						</div>
+					<span id="date_selector" class="hd_label hd_button">Change</span>
 				</div>
 			</div>
 			<div id="header_menu" class="col-md-7">

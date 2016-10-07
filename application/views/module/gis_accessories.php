@@ -17,27 +17,27 @@
 			<span class="set4"><i class="fa fa-arrow-up" aria-hidden="true"></i> UP</span>
 		</div>
 	</div>
-	<div id="plate_commercial">
-		<div id="pcom_label">
-			<span class="set1">Project Cost Update</span>
-			<span class="set2">Project Spend To Date</span>
-			<span class="set3">Awarded Package</span>
-			<span class="set4">PDP Reimbursables</span>
-			<span class="set5">WPCs Payment</span>
-			<span class="set6">Retention Sum</span>
-			<span class="set7">Variation Orders</span>
-			<span class="set8">Contigency Sum</span>
-		</div>
-		<div id="pcom_value">
-			<span class="set1">16.75 Bil</span>
-			<span class="set2">21.52 Bil</span>
-			<span class="set3">1.55 Mil</span>
-			<span class="set4">13.50 Bil</span>
-			<span class="set5">382.51 Mil</span>
-			<span class="set6">502.80 Mil</span>
-			<span class="set7">775.46 Mil</span>
-		</div>
-	</div>
+<!--	<div id="plate_commercial">-->
+<!--		<div id="pcom_label">-->
+<!--			<span class="set1">Project Cost Update</span>-->
+<!--			<span class="set2">Project Spend To Date</span>-->
+<!--			<span class="set3">Awarded Package</span>-->
+<!--			<span class="set4">PDP Reimbursables</span>-->
+<!--			<span class="set5">WPCs Payment</span>-->
+<!--			<span class="set6">Retention Sum</span>-->
+<!--			<span class="set7">Variation Orders</span>-->
+<!--			<span class="set8">Contigency Sum</span>-->
+<!--		</div>-->
+<!--		<div id="pcom_value">-->
+<!--			<span class="set1">16.75 Bil</span>-->
+<!--			<span class="set2">21.52 Bil</span>-->
+<!--			<span class="set3">1.55 Mil</span>-->
+<!--			<span class="set4">13.50 Bil</span>-->
+<!--			<span class="set5">382.51 Mil</span>-->
+<!--			<span class="set6">502.80 Mil</span>-->
+<!--			<span class="set7">775.46 Mil</span>-->
+<!--		</div>-->
+<!--	</div>-->
 	<div id="plate_legend">
 		<div id="pl_label_header">
 			<span class="set1">Legends</span>
@@ -62,16 +62,16 @@
 			
 			
 	<div id="plate_system">
-		<div id="donut_plate">
-			<div id="dp_db_donut_0" class="dp_top"></div>
-			<div id="dp_db_donut_1" class="dp_bottom"></div>
-			<div id="dp_db_donut_2" class="dp_bottom"></div>
-			<div id="dp_db_donut_3" class="dp_bottom"></div>
-			<div id="dp_db_donut_4" class="dp_bottom"></div>
-			<div id="dp_db_donut_5" class="dp_bottom"></div>
-			<div id="dp_db_donut_6" class="dp_bottom"></div>
-			<div id="dp_db_donut_7" class="dp_bottom"></div>
-		</div>
+<!--		<div id="donut_plate">-->
+<!--			<div id="dp_db_donut_0" class="dp_top"></div>-->
+<!--			<div id="dp_db_donut_1" class="dp_bottom"></div>-->
+<!--			<div id="dp_db_donut_2" class="dp_bottom"></div>-->
+<!--			<div id="dp_db_donut_3" class="dp_bottom"></div>-->
+<!--			<div id="dp_db_donut_4" class="dp_bottom"></div>-->
+<!--			<div id="dp_db_donut_5" class="dp_bottom"></div>-->
+<!--			<div id="dp_db_donut_6" class="dp_bottom"></div>-->
+<!--			<div id="dp_db_donut_7" class="dp_bottom"></div>-->
+<!--		</div>-->
 	</div>
 	
 	<div id="plate_physical">
@@ -157,8 +157,8 @@
             <a class="set11" href="<?php echo $this->config->base_url(); ?>v210/index">V210</a>
 		</div>
 		<div id="pl_phase">
-			<span class="set1">NORTH</span>
-			<span class="set2">SOUTH</span>
+			<span class="set1">PHASE 1</span>
+			<span class="set2">PHASE 2</span>
 		</div>
 	</div>
 </div>

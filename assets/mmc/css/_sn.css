@@ -1,4 +1,22 @@
 /*Loader*/
+#data_date{
+    /*cursor: pointer;*/
+    width: 75px;
+    text-align: center;
+    height: 23px;
+    /*float: right;*/
+    background-color: #222234;
+    border: none;
+    color: #fca;
+    font-size: .8em;
+
+
+}
+#data_date:focus{
+    outline: none;
+    color: transparent;
+    text-shadow: 0 0 0 #fca;
+}
 .block {
     /*margin-bottom: 20px;*/
     /*float: left;*/
