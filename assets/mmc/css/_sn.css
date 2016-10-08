@@ -120,3 +120,7 @@ div.custom_breadcrumb div.title {
     pointer-events: none;
     cursor: default;
 }
+
+.ui-datepicker{
+    z-index: 2 !important;
+}

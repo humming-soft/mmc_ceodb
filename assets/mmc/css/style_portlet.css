@@ -404,10 +404,14 @@ span.scurve_arrow {
 	font-size: 1.2em;
 	display: block;
 	position: absolute;
-	top: 4px;
+	top: 3px;
 	right: 5px;
 	border-radius: 5px;
 	background: #113;
+}
+span.scurve_arrow_alt{
+	top: 8px;
+	right: 8px;
 }
 	span.scurve_arrow_up {
 		color: #9f3;
@@ -524,6 +528,7 @@ div.portlet_comparison > div.content {
 	background: #222 !important;
 	border-left: 3px solid #669;
 	border-top-left-radius: 3px;;
+	border-radius: 5px;
 }
 
 div.portlet_comparison > div.content > div.portlet_title {

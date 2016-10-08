@@ -294,7 +294,7 @@ mpxd.generatePortletContent = function (data) {
 
 /* misc. functions. Put in seperate file if need arises */
 var gridster;
-var editing =false;
+var editing = false;
 
 
 function selectPort(port) {
@@ -348,7 +348,7 @@ function drawPortlets(s) {
 			var col = chosenPort.col;
 			var row = chosenPort.row;
 			//console.log(a);
-			var finalstring = '<div data-id="{0}" style="width:100%; padding-right:35px"><div id="portlet_{0}" class="block block-drop-shadow"></div></div>'.format(id, col, row, sizex, sizey); 
+			var finalstring = '<div data-id="{0}" style="width:100%; padding-right:35px"><div id="portlet_{0}" class="block block-drop-shadow"></div></div>'.format(id, col, row, sizex, sizey);
 			/*var finalstring = '<div data-id="{0}" data-col="{1}" data-row="{2}" data-sizex="12" data-sizey="{4}" class="asdasd" style="float:left"><div id="portlet_{0}" class="block block-drop-shadow"></div></div>'.format(id, col, row, sizex, sizey); */
 			$ul.append($(finalstring));
 		});

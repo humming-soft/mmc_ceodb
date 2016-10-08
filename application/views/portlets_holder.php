@@ -9,18 +9,14 @@
     	</span>
     </div>
     <div id="wrapper_landing_page">
-        <!-- -- -->
-        <!-- -- -->
         <!-- header -->
         <div id="header">
             <?php include 'module/header_menu.php' ?>
         </div>
         <!-- -- -->
-
-        <!-- -- -->
         <!-- content -->
         <div id="content">
-            <div id="dashboard" class="col-md-12">
+            <div class="col-md-12">
                 <div class="col-md-12">
                     <div class="">
                         <nav class="">
@@ -38,22 +34,13 @@
 
                 <div class="col-md-12 plate_portlet">
                     <div class="row">
-<!--                        <div class="col-md-7">-->
-<!--                            <div class="row">-->
-                                <div id="portlet_container">
-
-                                </div>
-<!--                            </div>-->
-<!--                        </div>-->
+                        <div id="portlet_container" style="width: 100%"></div>
                     </div>
                 </div>
-
             </div>
 
         </div>
         </div>
         <!-- -- -->
-        <!-- -- -->
     </div>
-</div>
 <?php include 'templates/default_footer.php' ?>
