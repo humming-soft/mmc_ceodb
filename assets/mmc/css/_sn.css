@@ -124,3 +124,15 @@ div.custom_breadcrumb div.title {
 .ui-datepicker{
     z-index: 2 !important;
 }
+
+/*[data-sizex="12"] {*/
+    /*width:98.70% !important;*/
+/*}*/
+
+.gridster ul{
+    position: initial !important;
+}
+/*.plr0 {*/
+    /*padding-left: 0px;*/
+    /*padding-right: 0px;*/
+/*}*/

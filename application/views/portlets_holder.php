@@ -16,7 +16,7 @@
         <!-- -- -->
         <!-- content -->
         <div id="content">
-            <div class="col-md-12">
+            <div id="dashboard" class="col-md-12">
                 <div class="col-md-12">
                     <div class="">
                         <nav class="">
@@ -32,10 +32,10 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 plate_portlet">
-                    <div class="row">
+                <div class="col-md-12 plate_portlet plr0">
+<!--                    <div class="row">-->
                         <div id="portlet_container" style="width: 100%"></div>
-                    </div>
+<!--                    </div>-->
                 </div>
             </div>
 
