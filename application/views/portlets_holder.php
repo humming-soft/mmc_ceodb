@@ -19,17 +19,18 @@
             <div id="dashboard" class="col-md-12">
                 <div class="col-md-12">
                     <div class="">
-                        <nav class="">
-                            <a class="custom_breadcrumb-item" style="outline: 0; padding: 0 5px; font-size: .9em;" href="<?php echo $this->config->base_url(); ?>dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
-                            <span><i class="fa fa-angle-right breadcrumb_divider" style="padding: 0 3px;" aria-hidden="true"></i></span>
-                            <a class="custom_breadcrumb-item" style="outline: 0; padding: 0 5px; font-size: .9em;" href="#">Phase 1</a>
-                            <span><i class="fa fa-angle-right breadcrumb_divider" style="padding: 0 3px;" aria-hidden="true"></i></span>
-                            <span class="custom_breadcrumb-item active" style="padding: 0 5px; font-size: .9em;">V 201</span>
-                        </nav>
+                            <div id="breadcrumbs_container">
+                                <ol id="breadcrumbs">
+                                    <li>
+                                        <a class="custom_breadcrumb-item" style="outline: 0; padding: 0 5px; font-size: .9em;" href="<?php echo $this->config->base_url(); ?>dashboard">
+                                            <i class="fa fa-home fa-md" aria-hidden="true" style="padding-top:2px;"></i>
+                                        </a>
+                                    </li>
+
+                                </ol>
+                            </div>
                     </div>
-                    <div class="title" style="color: #fff; padding: 0 7px 5px; font-size: 1.5em; border-bottom: 1px solid #335;">
-                        V 201
-                    </div>
+                    <div class="title breadcrumbs_title"></div>
                 </div>
 
                 <div class="col-md-12 plate_portlet plr0">
