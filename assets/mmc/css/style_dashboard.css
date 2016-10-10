@@ -264,7 +264,7 @@ float - plate_gis and stats
 	font-size: 2em;
 	color: rgba(255,255,255,.5);
 }
-#pl_phase span.set1 {top: 16.5%; left: 2.5%;}
+#pl_phase span.set1 {top: 5.5%; left: 4.5%;}
 #pl_phase span.set2 {top: 27%; left: 65%;}
 
 /*	pl_package
