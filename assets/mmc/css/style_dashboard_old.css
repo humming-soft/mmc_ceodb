@@ -207,7 +207,7 @@ float - plate_gis and stats
 	font-size: 1.1vw;
 	color: #fff;
 }
-#pl_label_header span.set1 {top: 80.0%; left: 19.5%;}
+#pl_label_header span.set1 {top: 2.0%; left: 3.5%;}
 
 /*	pl_label_content
 */
@@ -217,10 +217,10 @@ float - plate_gis and stats
 	font-size: .9vw;
 	color: #fff;
 }
-#pl_label_content span.set1 {top: 85.7%; left: 23.5%;}
-#pl_label_content span.set2 {top: 85.7%; left: 33.5%;}
-#pl_label_content span.set3 {top: 85.7%; left: 43.5%;}
-#pl_label_content span.set4 {top: 85.7%; left: 53.9%;}
+#pl_label_content span.set1 {top: 5.4%; left: 7.3%;}
+#pl_label_content span.set2 {top: 8.0%; left: 7.3%;}
+#pl_label_content span.set3 {top: 10.6%; left: 7.3%;}
+#pl_label_content span.set4 {top: 13.2%; left: 7.3%;}
 
 /*plate_issue*/
 /*	pi_title
@@ -264,7 +264,7 @@ float - plate_gis and stats
 	font-size: 2em;
 	color: rgba(255,255,255,.5);
 }
-#pl_phase span.set1 {top: 5.5%; left: 4.5%;}
+#pl_phase span.set1 {top: 16.5%; left: 2.5%;}
 #pl_phase span.set2 {top: 27%; left: 65%;}
 
 /*	pl_package

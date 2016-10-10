@@ -66,11 +66,8 @@ float - plate_gis and stats
 #pl_mspr > span {
 	z-index: 3000;
 }
-/*#pl_package > span {*/
-	/*z-index: 3000;*/
-/*}*/
-#pl_package > a {
-    z-index: 3000;
+#pl_package > span {
+	z-index: 3000;
 }
 #pl_phase > div {
 	z-index: 3000;
@@ -264,22 +261,11 @@ float - plate_gis and stats
 	font-size: 2em;
 	color: rgba(255,255,255,.5);
 }
-#pl_phase span.set1 {top: 5.5%; left: 4.5%;}
+#pl_phase span.set1 {top: 16.5%; left: 2.5%;}
 #pl_phase span.set2 {top: 27%; left: 65%;}
 
 /*	pl_package
 */
-/*#pl_package span {*/
-	/*display: none;*/
-	/*position: absolute;*/
-	/*font-size: 1.3em;*/
-	/*font-weight: bold;*/
-	/*padding: 2px 5px;*/
-	/*border-radius: 3px;*/
-	/*background: rgba(0,0,0,.25);*/
-	/*border:1px solid rgba(0,0,0,.35);*/
-	/*color: #fff;*/
-/*}*/
 #pl_package a {
     /*display: none;*/
     position: absolute;
@@ -288,8 +274,6 @@ float - plate_gis and stats
     padding: 2px 5px;
     border-radius: 3px;
     outline: 0;
-    /*background: rgba(0,0,0,.25);*/
-    /*border:1px solid rgba(0,0,0,.35);*/
     color: #fff;
 }
 #pl_package a.set1 {top: 67.5%; left: 13.0%;}
@@ -304,17 +288,6 @@ float - plate_gis and stats
 #pl_package a.set10 {top: 92.8%; left: 71.5%;}
 #pl_package a.set11 {top: 92.8%; left: 84.0%;}
 
-/*#pl_package span.set1 {top: 67.5%; left: 13.0%;}*/
-/*#pl_package span.set2 {top: 52.0%; left: 15.8%;}*/
-/*#pl_package span.set3 {top: 42.5%; left: 20.0%;}*/
-/*#pl_package span.set4 {top: 28.0%; left: 31.5%;}*/
-/*#pl_package span.set5 {top: 48.6%; left: 43.5%;}*/
-/*#pl_package span.set6 {top: 48.6%; left: 52.5%;}*/
-/*#pl_package span.set7 {top: 51.0%; left: 59.5%;}*/
-/*#pl_package span.set8 {top: 60.2%; left: 58.2%;}*/
-/*#pl_package span.set9 {top: 67.5%; left: 58.2%;}*/
-/*#pl_package span.set10 {top: 92.8%; left: 71.5%;}*/
-/*#pl_package span.set11 {top: 92.8%; left: 84.0%;}*/
 
 /*	pl_mspr
 */
@@ -593,23 +566,5 @@ div#donut_plate > div.dp_bottom {
 	font-size: .8vw;
 }
 
-/*Added By Sebin*/
-
-#data_date{
-	/*cursor: pointer;*/
-	width: 75px;
-	text-align: center;
-	height: 23px;
-	/*float: right;*/
-	background-color: transparent;
-	border: none;
-	color: #fca;
-	font-size: .8em;
 
 
-}
-#data_date:focus{
-	outline: none;
-	color: transparent;
-	text-shadow: 0 0 0 #fca;
-}

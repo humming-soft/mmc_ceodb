@@ -26,9 +26,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="876.16485"
-     inkscape:cy="221.39574"
+     inkscape:zoom="3.959798"
+     inkscape:cx="2032.402"
+     inkscape:cy="77.325537"
      inkscape:document-units="px"
      inkscape:current-layer="layer3"
      showgrid="false"
@@ -659,30 +659,30 @@
     <path
        id="legend_v_track_1"
        class="v_track"
-       d="m 427.19845,913.66205 -31.5713,0 0,4.82143 31.807,0 0,-4.82143 z"
+       d="m 41.168754,59.168203 -31.5713,0 0,4.82143 31.807,0 0,-4.82143 z"
        inkscape:connector-curvature="0" />
     <path
        id="legend_v_track_2"
        class="v_track"
-       d="m 671.0849,914.57591 -31.5714,0 0,4.82143 31.807,0 0,-4.82143 z"
+       d="m 40.769497,87.224922 -31.5714,0 0,4.821429 31.807,0 0,-4.821429 z"
        inkscape:connector-curvature="0" />
     <path
        id="legend_v_track_3"
        class="v_track"
-       d="m 913.91139,912.24125 -31.5714,0 0,4.82143 31.807,0 0,-4.82143 z"
+       d="m 40.738897,113.46169 -31.5714,0 0,4.82143 31.807,0 0,-4.82143 z"
        inkscape:connector-curvature="0" />
     <path
        id="legend_v_track_4"
        class="v_track"
-       d="m 1157.8132,912.21423 -31.5713,0 0,4.82143 31.807,0 0,-4.82143 z"
+       d="m 40.560668,138.69358 -31.5713,0 0,4.82143 31.807,0 0,-4.82143 z"
        inkscape:connector-curvature="0" />
     <rect
        id="legend_v_depot_1"
        class="v_depot"
        width="15.880999"
        height="15.880999"
-       x="-336.72894"
-       y="948.10187"
+       x="-20.387674"
+       y="65.431511"
        ry="0.14876911"
        transform="matrix(0.71898838,-0.6950221,0.6950221,0.71898838,0,0)" />
     <rect
@@ -690,8 +690,8 @@
        class="v_depot"
        width="15.880999"
        height="15.880999"
-       x="-161.95753"
-       y="1118.5354"
+       x="-40.119755"
+       y="85.596336"
        ry="0.14876911"
        transform="matrix(0.71898838,-0.6950221,0.6950221,0.71898838,0,0)" />
     <rect
@@ -699,8 +699,8 @@
        class="v_depot"
        width="15.880999"
        height="15.880999"
-       x="14.222478"
-       y="1285.7039"
+       x="-58.408985"
+       y="104.5163"
        ry="0.14876911"
        transform="matrix(0.71898838,-0.6950221,0.6950221,0.71898838,0,0)" />
     <rect
@@ -708,52 +708,52 @@
        class="v_depot"
        width="15.880999"
        height="15.880999"
-       x="189.57065"
-       y="1455.0226"
+       x="-76.106972"
+       y="122.35482"
        ry="0.14876911"
        transform="matrix(0.71898838,-0.6950221,0.6950221,0.71898838,0,0)" />
     <circle
        id="legend_v_station_1"
        class="v_station"
-       cx="394.55249"
-       cy="914.79126"
+       cx="8.52281"
+       cy="60.297352"
        r="7.282249" />
     <circle
        id="legend_v_station_2"
        class="v_station"
-       cx="638.69019"
-       cy="916.52441"
+       cx="8.3748245"
+       cy="89.173416"
        r="7.282249" />
     <circle
        id="legend_v_station_3"
        class="v_station"
-       cx="881.54724"
-       cy="914.26782"
+       cx="8.3748245"
+       cy="115.48817"
        r="7.282249" />
     <circle
        id="legend_v_station_4"
        class="v_station"
-       cx="1125.3007"
-       cy="914.63995"
+       cx="8.0482693"
+       cy="141.11922"
        r="7.282249" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:1.0738492px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 1178.0348,914.63984 20.9674,0"
+       d="m 60.782268,141.11919 20.9674,0"
        id="path4269"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:1.0738492px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 933.89273,915.27782 20.9674,0"
+       d="m 60.720197,116.49826 20.9674,0"
        id="path4269-2"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:1.0738492px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 691.152,916.52438 20.9674,0"
+       d="m 60.836597,89.173391 20.9674,0"
        id="path4269-8"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:1.0738492px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 445.92675,916.81153 20.9674,0"
+       d="m 59.897054,62.317683 20.9674,0"
        id="path4269-4"
        inkscape:connector-curvature="0" />
   </g>
