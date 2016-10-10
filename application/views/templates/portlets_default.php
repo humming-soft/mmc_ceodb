@@ -1,9 +1,11 @@
 <!--<link media="screen, print" href=--><?php //echo $this->config->base_url(); ?><!--assets/css/stylesheets.css rel=stylesheet type=text/css />-->
 <!--<link media="screen, print" rel="stylesheet" href="--><?php //echo $this->config->base_url(); ?><!--assets/css/slippry.css">-->
-<link media="screen, print" rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/flick/jquery-ui.css" />
+<!--<link media="screen, print" rel="stylesheet" href="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/jquery-ui-1.11.4.custom/jquery-ui.theme-flick.css" />-->
+<link media="screen, print" rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/package/jquery-ui-1.11.4.custom/jquery-ui.theme.dotluv.css">
 <!--jsImageslider-->
 <link media="screen, print" rel="stylesheet" href="<?php echo $this->config->base_url(); ?>assets/js/plugins/jsImageSlider/js-image-slider.css" />
 <link media="screen, print" rel="stylesheet" href="<?php echo $this->config->base_url(); ?>assets/css/jquery.gridster.css">
+<!--<link media="screen, print" rel="stylesheet" type="text/css" href="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/jquery-gridster/jquery.gridster.css">-->
 <!--<link media="screen, print" rel="stylesheet" href="--><?php //echo $this->config->base_url(); ?><!--assets/css/custom.css">-->
 <link media="screen, print" rel="stylesheet" href="<?php echo $this->config->base_url(); ?>assets/css/font-awesome-animation.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/css/_sn.css">
@@ -18,6 +20,8 @@
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/plugins/knob/jquery.knob.js></script>
 
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/jquery.gridster.js></script>
+
+<!--<script type=text/javascript src=--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/jquery-gridster/jquery.gridster.min.js></script>-->
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/history.min.js></script>
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/underscore-min.js></script>
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/backbone-min.js></script>

@@ -34,9 +34,16 @@
 <!--				<span class="hm_button disabled"><a disabled="disabled" class="disabled"><i class="fa fa-cube" aria-hidden="true"></i> Procurement</a></span>-->
 				<span class="hm_button"><a href="<?php echo $this->config->base_url(); ?>viaducts/summary"><i class="fa fa-cube" aria-hidden="true"></i> Summary</a></span>
 				<a style="text-decoration: none; color: #fff;" href="<?php echo $this->config->base_url(); ?>logout"><span class="hm_button"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</span></a>
-				<span class="hm_user_profile">
-					<i class="fa fa-user" aria-hidden="true"></i> Profile 
-					<i class="fa fa-caret-down" aria-hidden="true"></i>
+				<span class="hm_user_profile dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-user" aria-hidden="true"></i> Profile
+						<i class="fa fa-caret-down" aria-hidden="true"></i>
+					</a>
+					 <div class="dropdown-menu">
+						 <a class="dropdown-item"><i class="fa fa-user fa-2xc" aria-hidden="true"></i></a>
+						 <div class="dropdown-divider"></div>
+						 <p class="dropdown-item"><?php echo ($this->session->userdata['fullname']); ?></p>
+					 </div>
 				</span>
 			</div>
 		</div>

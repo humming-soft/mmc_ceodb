@@ -25,7 +25,7 @@
 	list-style: none;
 	overflow: hidden;
 	/*overflow-y: scroll;*/
-	padding: 0px 15px;
+	padding: 0px 4px;
 	/*border: 1px solid rgba(136, 136, 136, 0.19);*/
 }
 
@@ -126,11 +126,11 @@
 
 
 .gridster .gs-w  header.editing {
-    background: #666473;
+    background: transparent;
     display: block;
     position: absolute;
     top: 6px;
-    right: 21px;
+    right: 13px;
     font-size: 10px;
     line-height: normal;
     padding: 4px 0 6px;
@@ -138,7 +138,7 @@
     text-align: center;
     color: #fff;
     width: 72px;
-    height: 32px;
+    height: 31px;
     z-index: 2;
 }
 

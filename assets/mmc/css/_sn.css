@@ -5,7 +5,7 @@
     text-align: center;
     height: 23px;
     /*float: right;*/
-    background-color: #222234;
+    background-color: transparent;
     border: none;
     color: #fca;
     font-size: .8em;
@@ -119,4 +119,55 @@ div.custom_breadcrumb div.title {
 #header_menu .not-active {
     pointer-events: none;
     cursor: default;
+}
+
+.ui-datepicker{
+    z-index: 2 !important;
+}
+
+/*[data-sizex="12"] {*/
+    /*width:98.70% !important;*/
+/*}*/
+
+.gridster ul{
+    position: initial !important;
+}
+/*.plr0 {*/
+    /*padding-left: 0px;*/
+    /*padding-right: 0px;*/
+/*}*/
+
+/*Breadcrumbs*/
+
+#breadcrumbs {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    margin: 0;
+    overflow: hidden;
+    padding: 0px 0 5px 0px;
+    width: 100%;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.02);
+    font-size: .9em;
+}
+#breadcrumbs li {
+    list-style-type: none;
+    float: left;
+    padding-left: 8px;
+}
+#breadcrumbs li:first-child{
+    padding-left: 0;
+}
+#breadcrumbs a {
+    color: #39f;
+}
+#breadcrumbs>li+li:before {
+    padding-right: 10px;
+    color: #ccc;
+    font-family: FontAwesome;
+    content: "\f105";
+}
+.breadcrumbs_title {
+    color: #fff;
+    padding: 0 5px 5px;
+    font-size: 1.5em;
+    border-bottom: 1px solid #335;
 }

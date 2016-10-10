@@ -2547,23 +2547,14 @@ function generateBreadcrumbs(id) {
     var page = pages_lookup_id[id];
     var parentid = page.parent;
     var url = page.url
-    //alert('imcalled'+url);
+    // console.log('imcalled'+url);
 
     crumbs.push('<a href="javascript:void(0);" onclick="loadPage(\'' + url + '\')">' + page.name + '</a>'); // last value in breadcrumbs
     while (parentid != 0) {
         url = pages_lookup_id[parentid].url;
         if (url != '#') {
-            //alert('im called'+url);
-            if (url == 'sbk-s-05/home') {
-                crumbs.push('<a href="javascript:void(0);" onclick="window.location.href=\'../sbk-s-05/home\'">' + pages_lookup_id[parentid].name + '</a>');
-            }else if (url == 'sbk-s-06/index') {
-                crumbs.push('<a href="javascript:void(0);" onclick="window.location.href=\'../sbk-s-06/home\'">' + pages_lookup_id[parentid].name + '</a>');
-            }
-            else {
                 crumbs.push('<a href="javascript:void(0);" onclick="loadPage(\'' + url + '\')">' + pages_lookup_id[parentid].name + '</a>');
-            }
-        }
-        else
+        } else
             crumbs.push('<a href="javascript:void(0);" style="cursor:default;color:#B2B2B2">' + pages_lookup_id[parentid].name + '</a>');
             parentid = pages_lookup_id[parentid].parent;
     }
@@ -2689,6 +2680,8 @@ function loadPage(p, dontsavestate) {
     var title = pages_lookup_url[p].name;// + (((typeof data_dates[p] == "undefined") || (data_dates[p] == "")) ? "" : " ("+data_dates[p]+")");
     //$('#data_date').text(((typeof data_dates[p] == "undefined") || (data_dates[p] == "")) ? "" : data_dates[p] );
     generateBreadcrumbs(currentPageID);
+    $(".breadcrumbs_title").text(title);
+    // console.log(title);
     //$('#page_title').text(pages_lookup_url[p].name); // set the page title
 
     var currentRouteArr = currentRoute.split('/');
