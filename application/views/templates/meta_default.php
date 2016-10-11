@@ -8,30 +8,18 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/css/font-awesome.css">
 <!--<link rel="stylesheet" type="text/css" href="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/css/chartist.min.css">-->
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/css/jquery-ui.min.css">
-
+<link media="screen, print" rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/package/jquery-ui-1.11.4.custom/jquery-ui.theme-flick.css">
 <!-- jquery -->
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/jquery-3.0.0.min.js"></script>
 <script src="<?php echo $this->config->base_url(); ?>assets/mmc/package/malihu-custom-scrollbar-plugin-master/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/bootstrap.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/jquery-ui.js"></script>
-<!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/js/npm.js"></script>-->
-<!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/js/jquery-ui.min.js"></script>-->
-
-<!-- highcharts -->
-<!--<script type=text/javascript src=--><?php //echo $this->config->base_url(); ?><!--assets/highcharts/js/highcharts.js></script>-->
+<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/plugin/moment/moment.min.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/package/highcharts/highcharts.js"></script>
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/highcharts/js/dark-highcharts.js></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/package/highcharts/no-data-to-display.js"></script>
-<!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/highcharts/highcharts.js"></script>-->
-<!--Sebin Commented-->
-<!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/highcharts/highcharts-3d.js"></script>-->
-<!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/highcharts/highcharts-more.js"></script>-->
-<!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/highcharts/highmaps.js"></script>-->
-<!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/highcharts/highstock.js"></script>-->
 
-<!-- d3 -->
-<!--<script type="text/javascript" src="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/package/d3/d3.min.js"></script>-->
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/js/d3.js"></script>
 
 <!-- font -->

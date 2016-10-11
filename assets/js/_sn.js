@@ -999,6 +999,7 @@ mpxd.modules.viaducts.kpi_viaducts = Backbone.View.extend({
         var html = mpxd.getTemplate(that.data.type);
         template = _.template(html, {data: that.data});
         that.$el.html(template);
+        $('#header_datetime:visible').hide();
         that.$el.find('#bar-line-chart').highcharts({
             chart: {
                 zoomType: 'xy',

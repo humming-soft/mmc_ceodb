@@ -158,6 +158,7 @@ div.custom_breadcrumb div.title {
 }
 #breadcrumbs a {
     color: #39f;
+    outline: 0;
 }
 #breadcrumbs>li+li:before {
     padding-right: 10px;

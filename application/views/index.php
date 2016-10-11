@@ -38,4 +38,8 @@
 		<!-- -- -->
 	</div>
 </div>
+<script>
+	baseURL = <?php echo json_encode($this->config->base_url()); ?>;
+</script>
+<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/db.js"></script>
 <?php include 'templates/default_footer.php' ?>
