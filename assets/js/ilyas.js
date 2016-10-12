@@ -1922,12 +1922,12 @@ mpxd.modules.scurve.ScurveView1 = Backbone.View.extend({
             }, {
                 name: 'Late',
                 data: that.data.delayedData,
-                color: '#0070C0',
+                color: '#FF0000',
                 enableMouseTracking: false
             }, {
                 name: 'Actual',
                 data: that.data.actualData,
-                color: '#FF0000'
+                color: '#0070C0'
                 //enableMouseTracking: false,
                 /*events : {
                  mouseOver: function() {
@@ -2062,12 +2062,12 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
             }, {
                 name: 'Late',
                 data: that.data.delayedData,
-                color: '#0070C0',
+                color: '#FF0000',
                 enableMouseTracking: false
             }, {
                 name: 'Actual',
                 data: that.data.actualData,
-                color: '#FF0000'
+                color: '#0070C0'
             }],
             plotOptions: {
                 series: {
