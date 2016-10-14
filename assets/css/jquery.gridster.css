@@ -129,22 +129,23 @@
     background: transparent;
     display: block;
     position: absolute;
-    top: 6px;
-    right: 13px;
+    top: 4px;
+    right: 9px;
     font-size: 10px;
     line-height: normal;
     padding: 4px 0 6px;
     margin-bottom: 0px;
     text-align: center;
     color: #fff;
-    width: 72px;
-    height: 31px;
+    /* width: 72px; */
+    /* height: 31px; */
     z-index: 2;
 }
 
 .gridster .gs-w header.editing .header-button {
-    width: 28px;
-    height: 24px;
+    /* width: 28px; */
+    padding: 0 5px;
+    /* height: 24px; */
     margin-right: 5px;
     display: block;
     float: right;
@@ -152,8 +153,12 @@
     border: 1px solid #1E2B38;
     color: #e7e6e6;
     text-align: center;
-    line-height: 22px;
+    line-height: 25px;
     font-size: 16px;
+    border-radius: 4px;
+}
+.gridster .gs-w header.editing .header-button-edit{
+    color: #3399ff;
 }
 
 .header-button.header-button-move { cursor: move; }

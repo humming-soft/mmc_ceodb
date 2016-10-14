@@ -2,11 +2,11 @@
     <div class="row content">
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-info-circle" aria-hidden="true"></i>
-            Package Info
+            <%=data.title%>
         </div>
         <div class="col-md-12 portlet_content">
             <div class="pc_top">
-                IJM Construction Sdn Bhd
+                <%=data.data.contractor%>
             </div>
             <div class="row pc_bottom">
                 <div class="col-md-6">
@@ -23,7 +23,7 @@
                     <span class="item_value iv_mspr"><i class="fa fa-car" aria-hidden="true"></i> MSPR3</span>
                 </div>
                 <div class="pier_chart">
-                    <a href="<%=baseURL%>v201/piers"><span class="item_value iv_pierchart"><i class="fa fa-map" aria-hidden="true"></i> Pier Chart</span></a>
+                    <a href="javascript:void(0)" onClick="loadPage('<%=data.data.piers_url%>')"><span class="item_value iv_pierchart"><i class="fa fa-map" aria-hidden="true"></i> Pier Chart</span></a>
                 </div>
             </div>
             <br>

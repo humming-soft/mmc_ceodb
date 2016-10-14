@@ -977,8 +977,7 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
                            color: '#0d6ee2'
                        },
                        {
-                           name: 'Remaining',
-                           y: 30,
+                           name: 'Remaining',                           y: 30,
                            color: 'rgba(0,0,0,0.2)'
                        },
                    ]

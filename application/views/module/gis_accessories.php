@@ -147,7 +147,7 @@
 			<a class="set1" href="<?php echo $this->config->base_url(); ?>v201/index">V201</a>
             <a class="set2" href="<?php echo $this->config->base_url(); ?>v202/index">V202</a>
             <a class="set3" href="<?php echo $this->config->base_url(); ?>v203/index">V203</a>
-            <a class="set4" href="<?php echo $this->config->base_url(); ?>ug/index">UG</a>
+            <a class="set4">UG</a>
             <a class="set5" href="<?php echo $this->config->base_url(); ?>v204/index">V204</a>
             <a class="set6" href="<?php echo $this->config->base_url(); ?>v205/index">V205</a>
             <a class="set7" href="<?php echo $this->config->base_url(); ?>v206/index">V206</a>
