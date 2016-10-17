@@ -14,7 +14,7 @@ class Portlets_model extends CI_Model
         $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_project_sub.pjct_master_id');
         $this->db->where('tbl_project_master.pjct_name',$viaduct);
         $page_query = $this->db->get();
-        $page_result['value'] = $page_query->result_array();
+        $page_result = $page_query->result_array();
         return $page_result;
     }
 }
