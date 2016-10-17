@@ -283,8 +283,10 @@ class Dashboard extends CI_Controller {
                 $slug_name= $this->dashboard_model->get_slug($itemID);
                 switch($slug_name[0]['slug']){
                     case "v201": case "v202": case "v203": case "v204": case "v205": case "v206": case "v207": case "v208": case "v209": case "v210":
-                        $info=$this->portlets_model->package_info($slug_name[0]['slug']);
-                        array_push($data_source,$info);
+                        $pkg_info=$this->portlets_model->package_info($slug_name[0]['slug']);
+                        array_push($data_source,$pkg_info);
+                        $kad=$this->portlets_model->kad($slug_name[0]['slug']);
+                        array_push($data_source,$kad);
                         $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
                         break;
                     default:
