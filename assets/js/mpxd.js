@@ -6,7 +6,7 @@ isUseCustomPortlet = (getUrlParameter("print") == "1");
 mpxd.siteurl = 'https://mpxd.mymrt.com.my/';
 $(function(){
 	/* Optimize page for print layout */
-	
+
 	if (isUseCustomPortlet) {
 		$.fn.mCustomScrollbar = function(){};
 		$('.removeonprint').hide();

@@ -1304,7 +1304,7 @@ mpxd.constructors.progress = function(data) {
 }
 
 mpxd.constructors.page_info = function(data) {
-    //console.log(data);
+	
     mpxd.modules.general.GenerateGeneralview(data);
 }
 mpxd.constructors.page_info_station = function(data) {
