@@ -238,11 +238,9 @@ mpxd.generatePortletContent = function (data) {
 		lookup[d.id] = portletArray[idx];
 	});*/
 	//console.log(data);
-	
-		//console.log(data);
 	for (var i in data){
 		//console.log(data[i]);
-		
+
 		var path = $.parseJSON(data[i].meta_key);
 		//var temp = mpxd.datasource;
 		//var datasource_name = path[0];
@@ -251,7 +249,6 @@ mpxd.generatePortletContent = function (data) {
 		//var pointer = mpxd.datasourceAss
 		
 		var result = undefined;
-
 		
 		$.each(mpxd.datasource, function(idx, k){
 			if ((typeof k.data[currentSlug] != "undefined") && (typeof k.data[currentSlug][path[0]] != "undefined")) {
@@ -280,7 +277,7 @@ mpxd.generatePortletContent = function (data) {
 			u.id = data[i].id;
 			u.title = data[i].title;
 			u.type = data[i].type_name;
-			//console.log(u);
+			// console.log(u);
 			f($.extend(true, {}, u));
 		} else { console.log("Constructor "+data[i].type_name+" not found"); }
 	}

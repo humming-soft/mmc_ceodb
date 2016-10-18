@@ -277,17 +277,27 @@ class Dashboard extends CI_Controller {
 
                 $data_source = $this->dashboard_model->get_source_archivable($item_meta[0]['item_id'], $date);
 				$data_source_static = $this->dashboard_model->get_static_source($itemID);
-//                print_r($data_source);
-                //var_dump($this->session->all_userdata());
                 $data['title'] = 'api';
                 $slug_name= $this->dashboard_model->get_slug($itemID);
                 switch($slug_name[0]['slug']){
                     case "v201": case "v202": case "v203": case "v204": case "v205": case "v206": case "v207": case "v208": case "v209": case "v210":
-                        $pkg_info=$this->portlets_model->package_info($slug_name[0]['slug']);
-                        array_push($data_source,$pkg_info);
-                        $kad=$this->portlets_model->kad($slug_name[0]['slug']);
-                        array_push($data_source,$kad);
-                        $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                        $tpack= array();
+                        $pkg_info = $this->subString($this->portlets_model->package_info($slug_name[0]['slug']));
+                        $kad = $this->subString($this->portlets_model->kad($slug_name[0]['slug']));
+                        $gallary = $this->subString($this->portlets_model->gallary($slug_name[0]['slug']));
+                        $scurve = $this->subString($this->portlets_model->scurve($slug_name[0]['slug']));
+                        $hsse = $this->subString($this->portlets_model->hsse($slug_name[0]['slug']));
+                        $qrm = $this->subString($this->portlets_model->qrm($slug_name[0]['slug']));
+                        $piers = $this->subString($this->portlets_model->piers($slug_name[0]['slug']));
+                        array_push($tpack,$qrm,$kad,$pkg_info,$hsse,$gallary,$scurve,$piers);
+                        $slug_data = $this->slugConcat($slug_name[0]['slug'],$tpack);
+                        $outer =array();
+                        $inner=array(
+                            "name"=>strtoupper($slug_name[0]['slug']),
+                            "value"=>$slug_data
+                        );
+                        array_push($outer,$inner);
+                        $data['item'] = array('item' => $item_meta, 'data' => $outer, 'static_data' => $data_source_static);
                         break;
                     default:
                         $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
@@ -299,6 +309,19 @@ class Dashboard extends CI_Controller {
         }
 		//$data = array_merge($data[, array(0));
         $this->load->view('dashboard/api', $data);
+    }
+	
+ 	public function subString($json){
+		return substr($json,1,-1);
+	}
+
+    public function slugConcat($slug,$pack){
+       $data = '{"'.$slug.'":{';
+        foreach ($pack as $v) {
+            $data = $data.$v.',';
+        }
+
+        return rtrim($data,',').'}}';
     }
 
     public function setapi() {
