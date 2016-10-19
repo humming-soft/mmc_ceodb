@@ -49,7 +49,7 @@ class Portlets_model extends CI_Model
      */
     public function kad($viaduct)
     {
-        $this->db->select('tbl_kd_master.kd_desc,tbl_kd_master.forecast_date,tbl_kd_master.contract_date');
+        $this->db->select("tbl_kd_master.kd_desc, CASE WHEN tbl_kd_master.forecast_date!='' THEN to_char(to_date(tbl_kd_master.forecast_date, 'YYYY-MM-DD'), 'DD-Mon-yy') ELSE '' END AS forecast_date, CASE WHEN tbl_kd_master.contract_date!='' THEN to_char(to_date(tbl_kd_master.contract_date, 'YYYY-MM-DD'), 'DD-Mon-yy') ELSE '' END AS contract_date");
         $this->db->from('tbl_kd_master');
         $this->db->join('tbl_journal_master', 'tbl_journal_master.journal_master_id = tbl_kd_master.journal_master_id');
         $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_journal_master.pjct_master_id');
