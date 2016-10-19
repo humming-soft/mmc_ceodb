@@ -107,7 +107,7 @@ class Dashboard extends CI_Controller {
 
     public function dashboard() {
         
-        if (!$this->session->userdata('loggedin'))
+        if (!$this->session->userdata('uid'))
             return redirect('/');
         $data = $this->dashboard_model->get_source_archivable(5);
         $data = json_decode($data[0]['value'], true);
@@ -195,8 +195,10 @@ class Dashboard extends CI_Controller {
 
     public function view($item = FALSE, $query_type = FALSE, $query_key = FALSE) {
         //print_r($this->session->userdata('allowed_page'));
-        if (!$this->session->userdata('loggedin')) {
-            if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', "::1"))) {
+
+        if (!$this->session->userdata('uid')) {
+            //commented by Jane on 19/10/2016
+           /* if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', "::1"))) {
                 $this->session->set_userdata(array(
                     "loggedin" => true,
                     "uid" => '',
@@ -206,7 +208,7 @@ class Dashboard extends CI_Controller {
                     "usergroup" => 1,
                     "allowed_page" => json_encode($this->dashboard_model->menuPermissionBySlugAndPage(1))
                 ));
-            } else
+            } else*/
                 return redirect('/');
         }
 
