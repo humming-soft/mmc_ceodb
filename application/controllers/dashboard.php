@@ -299,7 +299,7 @@ class Dashboard extends CI_Controller {
                             "value"=>$slug_data
                         );
                         array_push($outer,$inner);
-                        $data['item'] = array('item' => $item_meta, 'data' => $outer, 'static_data' => $data_source_static);
+                        $data['item'] = array('item' => $item_meta, 'data' => $outer, 'static_data' => '[]');
                         break;
                     default:
                         $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
