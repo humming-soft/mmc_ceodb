@@ -1193,6 +1193,7 @@ mpxd.modules.general.GeneralView = Backbone.View.extend({
         template = _.template(html, {data: that.data});
         that.$el.html(template);
 		$('#header_datetime:hidden').show();
+		// that.$el.find('.content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-15});
         that.$el.find('.portlet_content').mCustomScrollbar({theme: 'rounded'});
             if (that.data.type === 'slider') {
                 // modified by agaile to show image slider from local repository : 31/05/2016 : START

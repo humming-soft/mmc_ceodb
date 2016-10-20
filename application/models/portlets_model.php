@@ -21,7 +21,7 @@ class Portlets_model extends CI_Model
         $this->db->from('tbl_stations');
         $this->db->join('tbl_project_sub', 'tbl_project_sub.station_master_id = tbl_stations.station_master_id');
         $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_project_sub.pjct_master_id');
-        $this->db->where('tbl_project_master.pjct_name',$viaduct);
+        $this->db->where('LOWER(tbl_project_master.pjct_name)',strtolower($viaduct));
         $page_query = $this->db->get();
         $slug_result = $page_query->result_array();
         $pkg_info["INFO"]['station'] = array();
