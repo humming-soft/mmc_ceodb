@@ -53,7 +53,7 @@ class Portlets_model extends CI_Model
         $this->db->from('tbl_kd_master');
         $this->db->join('tbl_journal_master', 'tbl_journal_master.journal_master_id = tbl_kd_master.journal_master_id');
         $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_journal_master.pjct_master_id');
-        $this->db->where('tbl_project_master.pjct_name', $viaduct);
+        $this->db->where('LOWER(tbl_project_master.pjct_name)', strtolower($viaduct));
         $kad_query = $this->db->get();
         $kad_result = $kad_query->result_array();
         $result['KAD'] = array();
