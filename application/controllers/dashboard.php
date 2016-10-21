@@ -285,9 +285,9 @@ class Dashboard extends CI_Controller {
                     case "v201": case "v202": case "v203": case "v204": case "v205": case "v206": case "v207": case "v208": case "v209": case "v210":
                         $tpack= array();
                         $pkg_info = $this->subString($this->portlets_model->package_info($slug_name[0]['slug']));
-                        $kad = $this->subString($this->portlets_model->kad($slug_name[0]['slug']));
+                        $kad = $this->subString($this->portlets_model->kad($slug_name[0]['slug'], $date));
                         $gallary = $this->subString($this->portlets_model->gallary($slug_name[0]['slug']));
-                        $scurve = $this->subString($this->portlets_model->scurve($slug_name[0]['slug']));
+                        $scurve = $this->subString($this->portlets_model->scurve($slug_name[0]['slug'], $date));
                         $hsse = $this->subString($this->portlets_model->hsse($slug_name[0]['slug']));
                         $qrm = $this->subString($this->portlets_model->kpi($slug_name[0]['slug'], $date));
                         $piers = $this->subString($this->portlets_model->piers($slug_name[0]['slug']));

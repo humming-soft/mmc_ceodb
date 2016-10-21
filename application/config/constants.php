@@ -90,6 +90,6 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
  */
 define('KAD', 1);
 define('KPI', 2);
-define('V-SCURVE', 3);
-define('P-SCURVE', 4);
+define('V_SCURVE', 3);
+define('P_SCURVE', 4);
 define('PIERS', 5);
