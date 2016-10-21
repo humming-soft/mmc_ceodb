@@ -558,8 +558,10 @@ class Portlets_model extends CI_Model
             $timestamp = date('Y-m-d', strtotime($date));
             $this->db->where('DATE(tbl_kpi_master.data_date)', $timestamp);
         }else{
-            $this->db->order_by("tbl_kpi_master.data_date", "desc");
-            $this->db->limit(4);
+            $max_date = $this->max_data_date("tbl_kpi_master", $this->db->get_compiled_select('', FALSE));
+            if($max_date!=""){
+                $this->db->where('tbl_kpi_master.data_date', $max_date);
+            }
         }
         $slug_result = $this->db->get()->result_array();
         foreach ($slug_result as $v) {
@@ -2091,4 +2093,15 @@ class Portlets_model extends CI_Model
 		}}';
         return $dummy_json;
     }
+    public function max_data_date($table,$q,$field = FALSE){
+        $merger="";
+        if($field){
+            $merger="SELECT MAX(".$table.".".$field.")";
+        }else{
+            $merger="SELECT MAX(".$table.".data_date)";
+        }
+        $max_date = $this->db->query($merger." ".strstr($q, 'FROM'))->row()->max;
+        return $max_date;
+    }
+
 }
