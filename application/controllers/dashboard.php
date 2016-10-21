@@ -289,7 +289,7 @@ class Dashboard extends CI_Controller {
                         $gallary = $this->subString($this->portlets_model->gallary($slug_name[0]['slug']));
                         $scurve = $this->subString($this->portlets_model->scurve($slug_name[0]['slug']));
                         $hsse = $this->subString($this->portlets_model->hsse($slug_name[0]['slug']));
-                        $qrm = $this->subString($this->portlets_model->qrm($slug_name[0]['slug']));
+                        $qrm = $this->subString($this->portlets_model->kpi($slug_name[0]['slug'], $date));
                         $piers = $this->subString($this->portlets_model->piers($slug_name[0]['slug']));
                         array_push($tpack,$qrm,$kad,$pkg_info,$hsse,$gallary,$scurve,$piers);
                         $slug_data = $this->slugConcat($slug_name[0]['slug'],$tpack);
