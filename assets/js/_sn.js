@@ -900,10 +900,11 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
         template = _.template(html, {data: that.data});
         that.$el.html(template);
         that.$el.find('.portlet_content').mCustomScrollbar({theme: 'rounded'});
-        // for Demo
-        var a=[10,20,30,40];
        for(var i=0;i<4;i++) {
-           that.$el.find('#chart_' + a[i]).highcharts({
+
+          var actual = parseInt(parseInt(this.data.data[i]['actual'])/parseInt(this.data.data[i]['baseline'])*100);
+          var target = parseInt(parseInt(this.data.data[i]['target'])/parseInt(this.data.data[i]['baseline'])*100);
+           that.$el.find('#chart_'+i).highcharts({
                chart: {
                    plotBackgroundColor: null,
                    plotBorderWidth: 0,
@@ -916,7 +917,7 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
                    height: 200
                },
                title: {
-                   text: 30 + '%',
+                   text: actual + '%',
                    style: {
                        color: '#9EDD2E',
                        fontSize: '150%',
@@ -957,12 +958,12 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
                    data: [
                        {
                            name: 'Completed',
-                           y: 30,
+                           y: actual,//Inner
                            color: '#fc0'
                        },
                        {
                            name: 'Remaining',
-                           y: 70,
+                           y: (100-actual),//inner
                            color: 'rgba(0,0,0,0.2)'
                        },
                    ]
@@ -973,11 +974,12 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
                    data: [
                        {
                            name: 'Completed',
-                           y: 70,
+                           y: target,//outer
                            color: '#0d6ee2'
                        },
                        {
-                           name: 'Remaining',                           y: 30,
+                           name: 'Remaining',
+                           y: (100-target),//outer
                            color: 'rgba(0,0,0,0.2)'
                        },
                    ]
@@ -986,6 +988,7 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
                    enabled: false
                },
            });
+           that.$el.find('#p'+i).text(this.data.data[i]['type']);
        }
     }
 });

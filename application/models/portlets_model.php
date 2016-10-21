@@ -539,12 +539,30 @@ class Portlets_model extends CI_Model
         return $dummy_json;
     }
 
-    public function qrm(){
-        $dummy_json ='{"QRM": [
-            ["Parapet", 290, 282, 290],
-            ["Bearings", 290, 278, 290]
-        ]}';
-        return $dummy_json;
+    public function kpi($viaduct, $date = FALSE){
+        $kpi = array("QRM" => array());
+//        $this->db->select('MAX(tbl_kpi_master.data_date)')->from('tbl_kpi_master');
+        //this will show the query in console.
+//        $subQuery =  $this->db->get_compiled_select();
+
+        $this->db->select('tbl_kpi_master.kpi_type,tbl_kpi_master.baseline,tbl_kpi_master.kpi_target,tbl_kpi_master.actual');
+        $this->db->from('tbl_kpi_master');
+        $this->db->join('tbl_journal_master', 'tbl_journal_master.journal_master_id = tbl_kpi_master.journal_master_id');
+        $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_journal_master.pjct_master_id');
+        $this->db->where('tbl_journal_master.journal_category_id',KPI);
+        $this->db->where('LOWER(tbl_project_master.pjct_name)',strtolower($viaduct));
+        if ($date) { //If date is selected
+            $timestamp = date('Y-m-d', strtotime($date));
+            $this->db->where('DATE(tbl_kpi_master.data_date)', $timestamp);
+        }else{
+            $this->db->order_by("tbl_kpi_master.data_date", "desc");
+            $this->db->limit(4);
+        }
+        $slug_result = $this->db->get()->result_array();
+        foreach ($slug_result as $v) {
+              array_push($kpi["QRM"],array("type"=>$v['kpi_type'],"baseline"=>$v['baseline'],"target"=>$v['kpi_target'],"actual"=>$v['actual']));
+        }
+        return json_encode($kpi);
     }
 
     public function piers(){
