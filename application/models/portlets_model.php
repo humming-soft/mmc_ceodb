@@ -48,7 +48,7 @@ class Portlets_model extends CI_Model
      * Return type:
      * Description:function get key access dates
      */
-    public function kad($viaduct)
+    public function kad($viaduct, $date = FALSE)
     {
         $this->db->select("tbl_kd_master.kd_desc, CASE WHEN tbl_kd_master.forecast_date!='' THEN to_char(to_date(tbl_kd_master.forecast_date, 'YYYY-MM-DD'), 'DD-Mon-yy') ELSE '' END AS forecast_date, CASE WHEN tbl_kd_master.contract_date!='' THEN to_char(to_date(tbl_kd_master.contract_date, 'YYYY-MM-DD'), 'DD-Mon-yy') ELSE '' END AS contract_date");
         $this->db->from('tbl_kd_master');
@@ -56,6 +56,15 @@ class Portlets_model extends CI_Model
         $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_journal_master.pjct_master_id');
         $this->db->where('LOWER(tbl_project_master.pjct_name)', strtolower($viaduct));
         $this->db->where('tbl_journal_master.journal_category_id',KAD);
+        if ($date) { //If date is selected
+            $timestamp = date('Y-m-d', strtotime($date));
+            $this->db->where('DATE(tbl_kd_master.data_date)', $timestamp);
+        }else{
+            $max_date = $this->max_data_date("tbl_kd_master", $this->db->get_compiled_select('', FALSE));
+            if($max_date!=""){
+                $this->db->where('tbl_kd_master.data_date', $max_date);
+            }
+        }
         $kad_query = $this->db->get();
         $kad_result = $kad_query->result_array();
         $result['KAD'] = array();
@@ -480,7 +489,7 @@ class Portlets_model extends CI_Model
      * Return type:
      * Description:function to get scurve data
      */
-    public function scurve($viaduct){
+    public function scurve($viaduct, $date = FALSE){
         $pkg_info["scurve"] = array();
         $this->db->select("tbl_project_prgs_master.early_perc,tbl_project_prgs_master.actual_perc,tbl_project_prgs_master.late_perc,tbl_project_prgs_master.early_variance,tbl_project_prgs_master.late_varience, to_char(tbl_project_prgs_master.data_date, 'Mon/yy') AS data_date");
         $this->db->from('tbl_project_prgs_master');
@@ -491,6 +500,10 @@ class Portlets_model extends CI_Model
         $this->db->order_by('tbl_project_prgs_master.data_date','desc');
         $this->db->order_by('tbl_project_prgs_master.crea_date','desc');
         /*echo ($this->db->get_compiled_select());*/
+        if ($date) { //if date is selected
+            $timestamp = date('Y-m-d', strtotime('12-09-2016'));
+            $this->db->where('DATE(tbl_project_prgs_master.data_date)<=', $timestamp);
+        }
         $page_query = $this->db->get();
         $scurve_result = $page_query->result_array();
         $i = true;
@@ -2093,14 +2106,19 @@ class Portlets_model extends CI_Model
 		}}';
         return $dummy_json;
     }
-    public function max_data_date($table,$q,$field = FALSE){
+
+    public function max_data_date($table,$q,$field = FALSE,$remove_order_by = FALSE){
         $merger="";
         if($field){
             $merger="SELECT MAX(".$table.".".$field.")";
         }else{
             $merger="SELECT MAX(".$table.".data_date)";
         }
-        $max_date = $this->db->query($merger." ".strstr($q, 'FROM'))->row()->max;
+        if($remove_order_by){
+            $max_date = $this->db->query($merger . " " . strstr(strstr($q,'ORDER BY',TRUE), 'FROM'))->row()->max;
+        }else {
+            $max_date = $this->db->query($merger . " " . strstr($q, 'FROM'))->row()->max;
+        }
         return $max_date;
     }
 
