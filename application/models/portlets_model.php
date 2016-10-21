@@ -472,22 +472,62 @@ class Portlets_model extends CI_Model
         return $dummy_json;
     }
 
-    public function scurve(){
-        $dummy_json= '{"scurve": {
-            "date": "29-February-16",
-			"actualData": [0, 0, 0, 0.43, 0.43, 0.43, 0.49, 0.79, 1.4, 1.65, 2.57, 3.12, 3.91, 5.5, 6.35, 8.31, 9.41, 11.91, 13.56, 16.25, 17.35, 19.3, 23.34, 27, 28.22, 31.16, 32.68, 35.19, 35.98, 38.36, 39.96, 41.34, 42.03, 43.38, 45.17, 46.58, 48.96, 50.53, 53.28, 56.85, 59.84, 61.76, 63.16, 65.19, 67.57, 69.64, 72.28, 75.38, 77.44, 81.56],
-			"earlyData": [0, 0, 0, 0.43, 0.43, 0.43, 0.49, 0.79, 1.4, 1.65, 2.57, 3.12, 3.91, 5.5, 6.35, 8.31, 9.41, 11.91, 13.56, 16.25, 17.35, 19.3, 23.34, 27, 28.22, 31.16, 32.68, 35.19, 35.98, 38.36, 39.96, 41.34, 42.03, 43.38, 45.17, 46.58, 49.55, 52.98, 57.99, 63.4, 69.41, 75.02, 79.13, 83.1, 86.77, 90.27, 93, 94.13, 94.88, 96.22, 96.95, 98.32, 99.58, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
-			"delayedData": [0, 0, 0, 0.43, 0.43, 0.43, 0.49, 0.79, 1.4, 1.65, 2.57, 3.12, 3.91, 5.5, 6.35, 8.31, 9.41, 11.91, 13.56, 16.25, 17.35, 19.3, 23.34, 27, 28.22, 31.16, 32.68, 35.19, 35.98, 38.36, 39.96, 41.34, 42.03, 43.38, 45.17, 46.58, 47.89, 50.35, 54.19, 57.71, 62.34, 67.19, 70.24, 74.49, 78.48, 82.98, 87.85, 90.49, 92.97, 94.69, 96.25, 97.9, 99.57, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
-			"currentEarly": "99.58%",
-			"currentLate": "99.57%",
-			"currentActual": "81.56%",
-			"varEarly": "-28.0w",
-			"varLate": "-19.0w",
-			"trend": "up",
-			"chartType": "long",
-			"viewType": "2"
-		}}';
-        return $dummy_json;
+    /**
+     * @jane
+     * date:20/10/2016
+     * Parameter:viaduct_name
+     * Return type:
+     * Description:function to get scurve data
+     */
+    public function scurve($viaduct){
+        $pkg_info["scurve"] = array();
+        $this->db->select("tbl_project_prgs_master.early_perc,tbl_project_prgs_master.actual_perc,tbl_project_prgs_master.late_perc,tbl_project_prgs_master.early_variance,tbl_project_prgs_master.late_varience, to_char(tbl_project_prgs_master.data_date, 'Mon/yy') AS data_date");
+        $this->db->from('tbl_project_prgs_master');
+        $this->db->join('tbl_journal_master', 'tbl_journal_master.journal_master_id = tbl_project_prgs_master.journal_master_id');
+        $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_journal_master.pjct_master_id');
+        $this->db->where('LOWER(tbl_project_master.pjct_name)',strtolower($viaduct));
+        $this->db->order_by('tbl_project_prgs_master.data_date','desc');
+        $this->db->order_by('tbl_project_prgs_master.crea_date','desc');
+        $page_query = $this->db->get();
+        $scurve_result = $page_query->result_array();
+        $i = true;
+        $prefix = $actual_perc = $early_perc = $late_perc = $date = '';
+        foreach($scurve_result as $result){
+            if($i){
+                $pkg_info["scurve"]["currentEarly"] = $result['early_perc']."%";
+                $pkg_info["scurve"]["currentLate"] = $result['late_perc']."%";
+                $pkg_info["scurve"]["currentActual"] = $result['actual_perc']."%";
+                $pkg_info["scurve"]["varEarly"] = $result['early_variance']."%";
+                $pkg_info["scurve"]["varLate"] = $result['late_varience']."%";
+                $actual_perc .= $prefix . $result['actual_perc'];
+                $early_perc .= $prefix . $result['early_perc'];
+                $late_perc .= $prefix . $result['late_perc'];
+                $date .= $prefix . $result['data_date'];
+                $prefix = ', ';
+                $i = false;
+            }else{
+                $actual_perc .= $prefix . $result['actual_perc'];
+                $early_perc .= $prefix . $result['early_perc'];
+                $late_perc .= $prefix . $result['late_perc'];
+                $date .= $prefix . $result['data_date'];
+                $prefix = ', ';
+                $dates = explode(", ",$date);
+                $pkg_info["scurve"]["actualData"] = array_reverse(array_map('floatval', explode(", ",$actual_perc)));
+                $pkg_info["scurve"]["earlyData"] = array_reverse(array_map('floatval', explode(", ",$early_perc)));
+                $pkg_info["scurve"]["delayedData"] = array_reverse(array_map('floatval', explode(", ",$late_perc)));
+                $pkg_info["scurve"]["categories"] = array_reverse($dates);
+            }
+        }
+        $date_count = count($dates);
+        if($date_count > 30) {
+            $pkg_info["scurve"]["tickInterval"] = 3;
+        } else {
+            $pkg_info["scurve"]["tickInterval"] = 1;
+        }
+        $pkg_info["scurve"]["trend"] = "up";
+        $pkg_info["scurve"]["chartType"] = "short";
+        $pkg_info["scurve"]["viewType"] = "2";
+        return json_encode($pkg_info);
     }
 
     public function hsse(){

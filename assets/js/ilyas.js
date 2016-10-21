@@ -1977,7 +1977,6 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
         var that = this;
         var html = mpxd.getTemplate("scurve-2");
 
-
         template = _.template(html, {data: that.data});
 
         if (typeof componentSelector != 'undefined') {
@@ -1988,7 +1987,6 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
             that.$el.html(template);
             that.$el.find('.content').mCustomScrollbar({theme: 'rounded'});
         }
-
         var chart = new Highcharts.Chart({
             title: {
                 text: '',
@@ -1996,7 +1994,7 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
             },
             xAxis: {
                 categories: that.data.categories,
-                tickInterval: 3,
+                tickInterval: that.data.tickInterval,
                 labels: {
                     rotation: 270,
                     //step: 3,
@@ -2132,18 +2130,19 @@ mpxd.modules.scurve.GenerateScurve = function (items, componentSelector) {
         var view = data.viewType;
         var trend = data.trend.toLowerCase();
 
-        data.categories = [];
+        /*data.categories = [];*/
         data.currentEarly = data.currentEarly.split('%')[0];
         data.currentActual = data.currentActual.split('%')[0];
         data.currentLate = data.currentLate.split('%')[0];
         //console.log(data);
 
-        if (type == "long") {
+        //commented by jane
+        /*if (type == "long") {
             data.categories = ["Jan/12", "Feb/12", "Mar/12", "Apr/12", "May/12", "Jun/12", "Jul/12", "Aug/12", "Sep/12", "Oct/12", "Nov/12", "Dec/12", "Jan/13", "Feb/13", "Mar/13", "Apr/13", "May/13", "Jun/13", "Jul/13", "Aug/13", "Sep/13", "Oct/13", "Nov/13", "Dec/13", "Jan/14", "Feb/14", "Mar/14", "Apr/14", "May/14", "Jun/14", "Jul/14", "Aug/14", "Sep/14", "Oct/14", "Nov/14", "Dec/14", "Jan/15", "Feb/15", "Mar/15", "Apr/15", "May/15", "Jun/15", "Jul/15", "Aug/15", "Sep/15", "Oct/15", "Nov/15", "Dec/15", "Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16", "Jul/16", "Aug/16", "Sep/16", "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17"];
         } else if (type == "short") {
             data.categories = ["Jan/12", "Apr/12", "Jul/12", "Oct/12", "Jan/13", "Apr/13", "Jul/13", "Oct/13", "Jan/14", "Apr/14", "Jul/14", "Oct/14", "Jan/15", "Apr/15", "Jul/15", "Oct/15", "Jan/16", "Apr/16", "Jul/16", "Oct/16", "Jan/17", "Apr/17", "Jul/17"];
             //data.categories = ["Jan-12", "Apr-12", "Jul-12", "Oct-12", "Jan-13", "Apr-13", "Jul-13", "Oct-13", "Jan-14", "Apr-14", "Jul-14", "Oct-14", "Jan-15", "Apr-15", "Jul-15", "Oct-15", "Jan-16", "Apr-16", "Jul-16", "Oct-16", "Jan-17", "Apr-17", "Jul-17"];
-        }
+        }*/
 
         if (typeof data.startAt != "undefined") {
             var dayms = 86400000;
