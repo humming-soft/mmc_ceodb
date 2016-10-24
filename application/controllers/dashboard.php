@@ -338,7 +338,11 @@ class Dashboard extends CI_Controller {
                     case "viaducts":
                         switch($page){
                             case "summary":
-                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                $summary  = $this->portlets_model->viaducts_summary($date);
+                                $outer = array();
+                                $inner = array("name" => "Viaducts Summary","value" => $summary);
+                                array_push($outer, $inner);
+                                $data['item'] = array('item' => $item_meta, 'data' => $outer, 'static_data' => '[]');
                                 break;
                             case "comparison":
                                 $cmp = $this->session->userdata('cmpid');

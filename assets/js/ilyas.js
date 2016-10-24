@@ -2675,8 +2675,15 @@ function loadPage(p, dontsavestate) {
 
 
     //if (
+
     var currentRoute = p;
-    currentPageID = pages_lookup_url[p].id;
+    //Added by Sebin for invalid page handling.
+    if(typeof pages_lookup_url[p] == "undefined"){
+        console.log("invalid Page redirecting to previous page");
+        history.go(-1);
+    }else {
+        currentPageID = pages_lookup_url[p].id;
+    }
     var title = pages_lookup_url[p].name;// + (((typeof data_dates[p] == "undefined") || (data_dates[p] == "")) ? "" : " ("+data_dates[p]+")");
     //$('#data_date').text(((typeof data_dates[p] == "undefined") || (data_dates[p] == "")) ? "" : data_dates[p] );
     generateBreadcrumbs(currentPageID);

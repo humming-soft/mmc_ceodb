@@ -501,7 +501,7 @@ class Portlets_model extends CI_Model
         $this->db->order_by('tbl_project_prgs_master.crea_date','desc');
         /*echo ($this->db->get_compiled_select());*/
         if ($date) { //if date is selected
-            $timestamp = date('Y-m-d', strtotime('12-09-2016'));
+            $timestamp = date('Y-m-d', strtotime($date));
             $this->db->where('DATE(tbl_project_prgs_master.data_date)<=', $timestamp);
         }
         $page_query = $this->db->get();
@@ -2106,6 +2106,59 @@ class Portlets_model extends CI_Model
 		}}';
         return $dummy_json;
     }
+
+    public function viaducts_summary($date = FALSE){
+        $v_summary["systems"] = array(
+            "syspackage"=>array()
+        );
+        $this->db->select("tbl_project_master.pjct_name, tbl_project_master.pjct_master_id,tbl_project_prgs_master.early_perc,tbl_project_prgs_master.actual_perc,tbl_project_prgs_master.late_perc,tbl_project_prgs_master.early_variance,tbl_project_prgs_master.late_varience");
+        $this->db->from('tbl_project_prgs_master');
+        $this->db->join('tbl_journal_master', 'tbl_journal_master.journal_master_id = tbl_project_prgs_master.journal_master_id');
+        $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_journal_master.pjct_master_id');
+        $this->db->where('tbl_journal_master.journal_category_id',V_SCURVE);
+        if ($date) { //if date is selected
+            $timestamp = date('Y-m-d', strtotime($date));
+            $this->db->where('DATE(tbl_project_prgs_master.data_date)', $timestamp);
+        }else{
+            $max_date = $this->max_data_date("tbl_project_prgs_master", $this->db->get_compiled_select('', FALSE));
+            if($max_date!=""){
+                $this->db->where('tbl_project_prgs_master.data_date', $max_date);
+            }
+        }
+        $vs_result = $this->db->get()->result_array();
+        foreach($vs_result as  $v) {
+            array_push($v_summary["systems"]["syspackage"], array(
+                "item"=>strtoupper($v["pjct_name"]),
+                "url"=> strtolower($v["pjct_name"])."/index",
+                "early"=> $v["early_perc"],
+                "late"=> $v["late_perc"],
+                "actual"=> $v["actual_perc"],
+                "varianceEarly"=> $v["early_variance"],
+                "varianceLate"=> $v["late_varience"],
+                "trend"=> "down"
+                ));
+        }
+        return json_encode($v_summary);
+    }
+
+/*{
+"systems": {
+"syspackage": [
+{
+"item": "SBK-S-01",
+"url": "sbk-s-01/index",
+"early": "76.85",
+"late": "74.30",
+"actual": "73.34",
+"varianceEarly": "-6.0",
+"varianceLate": "-2.0",
+"trend": "down"
+}]}}*/
+
+
+
+    /*Miscellaneous Methods*/
+
     /**
      * @sebin
      * date:21/10/2016
@@ -2140,5 +2193,6 @@ class Portlets_model extends CI_Model
         $result = $this->db->query($sql)->result_array();
         return $result;
     }
+
 
 }
