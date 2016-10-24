@@ -51,7 +51,7 @@ y-axis
 ------------------------------------------------------------------------------------------------------------------------
 */
 
-	.mCSB_inside > .mCSB_container{ margin-right: 30px; }
+	.mCSB_inside > .mCSB_container{ margin-right: 20px; }
 
 	.mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden{ margin-right: 0; } /* non-visible scrollbar */
 	
@@ -1108,8 +1108,10 @@ yx-axis
 	.mCS-dark-3.mCSB_scrollTools .mCSB_draggerRail{ background-color: #000; background-color: rgba(0,0,0,0.1); }
 	
 	.mCS-dark-3.mCSB_scrollTools .mCSB_buttonUp{ background-position: -112px -72px; }
+	/*.mCS-dark-3.mCSB_scrollTools .mCSB_buttonUp{ background-position: 0px -72px; }*/
 
 	.mCS-dark-3.mCSB_scrollTools .mCSB_buttonDown{ background-position: -112px -92px; }
+	/*.mCS-dark-3.mCSB_scrollTools .mCSB_buttonDown{ background-position: 0px -92px; }*/
 
 	.mCS-dark-3.mCSB_scrollTools .mCSB_buttonLeft{ background-position: -120px -112px; }
 
@@ -1265,3 +1267,7 @@ yx-axis
 	.mCS-inset-3-dark.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{ background-color: #fff; background-color: rgba(255,255,255,0.9); }
 	
 	/* ---------------------------------------- */
+
+/*Added By Sebin*/
+/*.mCS-dark-3.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ background-color: rgb(36, 91, 146); }*/
+/*.mCS-my-theme.mCSB_scrollTools .mCSB_draggerRail{ background-color: white; }*/

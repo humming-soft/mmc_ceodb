@@ -82,6 +82,7 @@
 
 //        generateSideMenu(pages);
         //sideMenu();
+        $.mCustomScrollbar.defaults.scrollButtons.enable=true;
         loadPage(getRoute(), true);
         //new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'));
        

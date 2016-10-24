@@ -958,7 +958,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 
         template = _.template(html, {data: that.data});
         that.$el.html(template);
-		that.$el.find('.content').mCustomScrollbar({theme: 'rounded'});		
+		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
 		
 		if(typeof that.data.data.items === 'object') // Local repository format
 		{
@@ -1085,6 +1085,8 @@ mpxd.modules.progress.ProgressView = Backbone.View.extend({
         var remainingProgress = 100 - currentProgress;
         template = _.template(html, {data: that.data});
         that.$el.html(template);
+		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
         that.$el.find('#chart_' + that.data.id).highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -1193,8 +1195,8 @@ mpxd.modules.general.GeneralView = Backbone.View.extend({
         template = _.template(html, {data: that.data});
         that.$el.html(template);
 		$('#header_datetime:hidden').show();
-		// that.$el.find('.content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-15});
-        that.$el.find('.portlet_content').mCustomScrollbar({theme: 'rounded'});
+		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
             if (that.data.type === 'slider') {
                 // modified by agaile to show image slider from local repository : 31/05/2016 : START
                 //console.log('slider_agaile');

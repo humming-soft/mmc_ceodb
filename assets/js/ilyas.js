@@ -1257,7 +1257,7 @@ mpxd.modules.manufacturing_progress_chart.train_progress = Backbone.View.extend(
         template = _.template(html, {data: that.data});
 
         that.$el.html(template);
-        that.$el.find('.content').mCustomScrollbar({theme: 'rounded'});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
         //Static Needs Change
         //that.data.maxJobs = 10000;
         var c_data_date = "?date=" + moment($("#et_data_date").val(), "DD-MMM-YY").format("YYYY-MM-DD");
@@ -1846,7 +1846,7 @@ mpxd.modules.scurve.ScurveView1 = Backbone.View.extend({
 
         template = _.template(html, {data: that.data});
         that.$el.html(template);
-        that.$el.find('.content').mCustomScrollbar({theme: 'rounded'});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
         //that.$el.find('#chart_'+that.data.id).highcharts({
         var chart = new Highcharts.Chart({
             title: {
@@ -1985,7 +1985,7 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
             that.$el.find(componentSelector).html(contents);
         } else {
             that.$el.html(template);
-            that.$el.find('.content').mCustomScrollbar({theme: 'rounded'});
+            that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
         }
         var chart = new Highcharts.Chart({
             title: {
@@ -2652,6 +2652,7 @@ function relativeToAbsolute(url) {
 enableDays = [];
 function loadPage(p, dontsavestate) {
     $("div#loading_pad").removeClass("loading_pad_gohide");
+    $("div#cover").removeClass("overlay_gohide").addClass("overlay");
     reallink = p;
     p = p.substr(0, (p.indexOf('?') == -1) ? p.length : p.indexOf('?'));
     //var date = getParameterByName('date');
@@ -2733,7 +2734,8 @@ function loadPage(p, dontsavestate) {
 
         //Draw the portlets
         drawPortlets(data);
-        mpxd.getData(data, function (result) {
+        var j = p.split("/");
+        mpxd.getData(data, j[1], function (result) {
             mpxd.resetDatasource();
             for (var i in result.data) {
                 //var json = jQuery.parseJSON(result.data[i].value);
@@ -2746,6 +2748,7 @@ function loadPage(p, dontsavestate) {
             var array = mpxd.generatePortletContent(result.item);
             var temp = [];
             $("div#loading_pad").addClass("loading_pad_gohide");
+            $("div#cover").addClass("overlay_gohide").removeClass("overlay");
             //mpxd.datasource = temp;
         });
     });

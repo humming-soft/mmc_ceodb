@@ -53,6 +53,7 @@ $route['default_controller'] = "dashboard";
 $route['404_override'] = '';
 $route['api/(:any)'] = 'dashboard/api/$1';
 $route['portlet/(:any)/(:any)'] = 'dashboard/portlet/$1/$2';
+$route['viaducts/compare'] = 'dashboard/compare';
 $route['setapi/(:any)'] = 'dashboard/setapi/$1';
 $route['draw'] = 'dashboard/draw';
 $route['save'] = 'dashboard/save';

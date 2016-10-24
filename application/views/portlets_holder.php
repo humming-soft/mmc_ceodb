@@ -2,12 +2,14 @@
 <?php include 'templates/portlet_header.php' ?>
 <title>CEODB L2</title>
 <div id="wrapper" class="">
-    <div id="loading_pad" class="loading_pad loading_pad_gohide">
-    	<span>
-    		<p>Loading</p>
-    		<img src="../assets/img/loading.gif">
-    	</span>
-    </div>
+<!--    <div id="loading_pad" class="loading_pad loading_pad_gohide">-->
+<!--    	<span>-->
+<!--    		<p>Loading</p>-->
+<!--    		<img src="../assets/img/loading.gif">-->
+<!--    	</span>-->
+<!--    </div>-->
+    <div id="loading_pad" class="loading_pad_gohide"><span><b>CEO DASHBOARD</b><p class="ltext">Loading...</p></span></div>
+    <div id="cover" class="overlay_gohide">
     <div id="wrapper_landing_page">
         <!-- header -->
         <div id="header">

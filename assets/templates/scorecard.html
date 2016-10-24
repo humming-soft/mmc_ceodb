@@ -7,13 +7,21 @@
         <div class="col-md-12 portlet_content">
             <div class="">
                 <div class="theader_button">
-                    <button type="button" class="btn btn-primary" onclick="location.href='<%=baseURL%>viaducts/comparison';">Compare</button>
+                    <button type="button" id="vcmp_btn" disabled="disabled" class="btn btn-primary">Compare</button>
                 </div>
                 <table class="table">
                     <thead>
                     <tr>
                         <th class="col_separation col-md-1">
-                            <input type="checkbox" name="" value="">
+                            <!--<section title=".squaredThree">-->
+                                <!-- .squaredThree -->
+                                <!--<div class="squaredThree">-->
+                                    <!--<input type="checkbox" value="None" id="squaredThree" name="check" checked />-->
+                                    <!--<label for="squaredThree"></label>-->
+                                <!--</div>-->
+                                <!-- end .squaredThree -->
+                            <!--</section>-->
+                            <input type="checkbox" name="" value="11" id="checkAll">
                             Select All
                         </th>
                         <th class="col_separation col-md-3">Viaduct Phase 1 and 2</th>
@@ -34,7 +42,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" name="" value=""></td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="1"></td>
                         <td>V 201</td>
                         <td class="val_early">88%</td>
                         <td class="val_late">88%</td>
@@ -44,7 +52,7 @@
                         <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
                     </tr>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" name="" value=""></td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="2"></td>
                         <td>V 202</td>
                         <td class="val_early">88%</td>
                         <td class="val_late">88%</td>
@@ -54,7 +62,7 @@
                         <td class="ball_indicator mrt_colorcode_ball_2"><i class="fa fa-arrow-right" aria-hidden="true"></i></td>
                     </tr>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" name="" value=""></td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="3"></td>
                         <td>V 203</td>
                         <td class="val_early">88%</td>
                         <td class="val_late">88%</td>
@@ -64,7 +72,7 @@
                         <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
                     </tr>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" name="" value=""></td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="4"></td>
                         <td>V 204</td>
                         <td class="val_early">88%</td>
                         <td class="val_late">88%</td>
@@ -74,7 +82,7 @@
                         <td class="ball_indicator mrt_colorcode_ball_3"><i class="fa fa-arrow-down" aria-hidden="true"></i></td>
                     </tr>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" name="" value=""></td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="5"></td>
                         <td>V 205</td>
                         <td class="val_early">88%</td>
                         <td class="val_late">88%</td>
@@ -84,7 +92,7 @@
                         <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
                     </tr>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" name="" value=""></td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="6"></td>
                         <td>V 206</td>
                         <td class="val_early">88%</td>
                         <td class="val_late">88%</td>
@@ -94,7 +102,7 @@
                         <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
                     </tr>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" name="" value=""></td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="7"></td>
                         <td>V 207</td>
                         <td class="val_early">88%</td>
                         <td class="val_late">88%</td>
@@ -104,7 +112,7 @@
                         <td class="ball_indicator mrt_colorcode_ball_3"><i class="fa fa-arrow-down" aria-hidden="true"></i></td>
                     </tr>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" name="" value=""></td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="8"></td>
                         <td>V 208</td>
                         <td class="val_early">88%</td>
                         <td class="val_late">88%</td>
@@ -114,7 +122,7 @@
                         <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
                     </tr>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" name="" value=""></td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="9"></td>
                         <td>V 209</td>
                         <td class="val_early">88%</td>
                         <td class="val_late">88%</td>
@@ -124,7 +132,7 @@
                         <td class="ball_indicator mrt_colorcode_ball_2"><i class="fa fa-arrow-right" aria-hidden="true"></i></td>
                     </tr>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" name="" value=""></td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="10"></td>
                         <td>V 210</td>
                         <td class="val_early">88%</td>
                         <td class="val_late">88%</td>

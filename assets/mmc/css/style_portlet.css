@@ -241,6 +241,9 @@ div.portlet_keydates div.content {
 }
 div.portlet_keydates div.portlet_content {
 	padding-top: 10px;
+	/*Added by Sebin*/
+	padding-bottom: 10px;
+	padding-right: 10px !important;
 }
 div.portlet_keydates div.portlet_title {
 	color: #fff;

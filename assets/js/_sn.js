@@ -29,7 +29,8 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
         var html = mpxd.getTemplate(that.data.type);
         template = _.template(html, {data: that.data});
         that.$el.html(template);
-        // that.$el.find('.portlet_content').mCustomScrollbar({theme: 'rounded'});
+        that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
 
 
         var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
@@ -899,11 +900,12 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
         var html = mpxd.getTemplate(that.data.type);
         template = _.template(html, {data: that.data});
         that.$el.html(template);
-        that.$el.find('.portlet_content').mCustomScrollbar({theme: 'rounded'});
+        that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
        for(var i=0;i<4;i++) {
 
-          var actual = parseInt(parseInt(this.data.data[i]['actual'])/parseInt(this.data.data[i]['baseline'])*100);
-          var target = parseInt(parseInt(this.data.data[i]['target'])/parseInt(this.data.data[i]['baseline'])*100);
+          var actual = parseInt(parseInt((typeof this.data.data[i]['actual']=="undefined")?0:this.data.data[i]['actual'])/parseInt((typeof this.data.data[i]['baseline']=="undefined")?1:this.data.data[i]['baseline'])*100);
+          var target = parseInt(parseInt((typeof this.data.data[i]['target']=="undefined")?0:this.data.data[i]['target'])/parseInt((typeof this.data.data[i]['baseline']=="undefined")?1:this.data.data[i]['baseline'])*100);
            that.$el.find('#chart_'+i).highcharts({
                chart: {
                    plotBackgroundColor: null,
@@ -1132,7 +1134,7 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
         var html = mpxd.getTemplate(that.data.type);
         template = _.template(html, {data: that.data});
         that.$el.html(template);
-        that.$el.find('.portlet_content').mCustomScrollbar({theme: 'rounded'});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
         // for Demo
         var a=[10,20,30,40];
         for(var i=0;i<4;i++) {
@@ -1328,4 +1330,34 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
 
         });
     }
+});
+/*
+*@ Sebin
+* Toggle the select all.
+ */
+$(document).on("change", "#checkAll", function (){
+    $("input:checkbox"). prop('checked', $(this). prop("checked"));
+    if($(this). prop("checked")){$("#vcmp_btn").removeAttr("disabled");}else{ $("#vcmp_btn"). prop("disabled", "disabled");}
+});
+/*
+ *@ Sebin
+ * Toggle the select all if all the check box is checked and enable/disable compare button
+ */
+$(document).on("change", ".checkbox", function (){
+    if($(".checkbox").filter(':checked').length>1){$("#vcmp_btn").removeAttr("disabled");}else{$("#vcmp_btn"). prop("disabled", "disabled");}
+    if($(".checkbox").filter(':checked').length==$(".checkbox").length){$("#checkAll"). prop('checked', "checked");}else{$("#checkAll"). removeAttr('checked');}
+});
+/*
+ *@ Sebin
+ * get all the selected checkbox values and process further.
+ */
+$(document).on("click","#vcmp_btn",function(){
+    var formData = $("input[name='vs_compare']:checked").map(function(){return this.value;}).get();
+    $.post(baseURL+'viaducts/compare' ,{"data": formData}, function(data, textStatus, jqXHR){
+        if(data) {
+            loadPage('viaducts/comparison');
+        }
+    }).fail(function(jqXHR, textStatus, errorThrown){
+        alert("Unable to process your request please try later!.")
+    });
 });

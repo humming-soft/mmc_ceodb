@@ -241,7 +241,26 @@ class Dashboard extends CI_Controller {
         $this->load->view('dashboard/api', $data);
         //$this->output->enable_profiler(TRUE);
     }
-
+    /**
+     * @sebin
+     * date:23/10/2016
+     * Parameter:
+     * Return type: ajax call , Array
+     * Description: Attain compare ids of the viaducts and save them in the session for further processing in the api method under viaduxts/comparison.
+     */
+    public function compare(){
+        $vals = $this->input->post("data");
+        $this->session->set_userdata('cmpid', $vals);
+        $data['item'] = true;
+        $this->load->view('dashboard/api', $data);
+    }
+    /**
+     * @sebin(Modified), @jane(Modified)
+     * date:23/10/2016 (Date last Modified)
+     * Parameter:
+     * Return type: ajax call , Array
+     * Description: Attain the portlet wise data.
+     */
     public function api() {
         //$result = array();
         if ($this->input->get()) {
@@ -249,10 +268,12 @@ class Dashboard extends CI_Controller {
 			//Unset unneeded array
 			unset($gets['item_id']);
 			unset($gets['date']);
+            unset($gets['p']);
 			unset($gets['_']);
 
             $query = array_keys($gets);
             $itemID = $this->input->get('item_id');
+            $page = $this->input->get('p');
 
             //Data archive date list
             if ($this->input->get("date_list")) {
@@ -283,23 +304,60 @@ class Dashboard extends CI_Controller {
                 $slug_name= $this->dashboard_model->get_slug($itemID);
                 switch($slug_name[0]['slug']){
                     case "v201": case "v202": case "v203": case "v204": case "v205": case "v206": case "v207": case "v208": case "v209": case "v210":
-                        $tpack= array();
-                        $pkg_info = $this->subString($this->portlets_model->package_info($slug_name[0]['slug']));
-                        $kad = $this->subString($this->portlets_model->kad($slug_name[0]['slug'], $date));
-                        $gallary = $this->subString($this->portlets_model->gallary($slug_name[0]['slug']));
-                        $scurve = $this->subString($this->portlets_model->scurve($slug_name[0]['slug'], $date));
-                        $hsse = $this->subString($this->portlets_model->hsse($slug_name[0]['slug']));
-                        $qrm = $this->subString($this->portlets_model->kpi($slug_name[0]['slug'], $date));
-                        $piers = $this->subString($this->portlets_model->piers($slug_name[0]['slug']));
-                        array_push($tpack,$qrm,$kad,$pkg_info,$hsse,$gallary,$scurve,$piers);
-                        $slug_data = $this->slugConcat($slug_name[0]['slug'],$tpack);
-                        $outer =array();
-                        $inner=array(
-                            "name"=>strtoupper($slug_name[0]['slug']),
-                            "value"=>$slug_data
-                        );
-                        array_push($outer,$inner);
-                        $data['item'] = array('item' => $item_meta, 'data' => $outer, 'static_data' => '[]');
+                        switch($page) {
+                            case "index":
+                                $tpack = array();
+                                $pkg_info = $this->subString($this->portlets_model->package_info($slug_name[0]['slug']));
+                                $kad = $this->subString($this->portlets_model->kad($slug_name[0]['slug'], $date));
+                                $gallary = $this->subString($this->portlets_model->gallary($slug_name[0]['slug']));
+                                $scurve = $this->subString($this->portlets_model->scurve($slug_name[0]['slug'], $date));
+                                $hsse = $this->subString($this->portlets_model->hsse($slug_name[0]['slug']));
+                                $qrm = $this->subString($this->portlets_model->kpi($slug_name[0]['slug'], $date));
+                                $piers = $this->subString($this->portlets_model->piers($slug_name[0]['slug']));
+                                array_push($tpack, $qrm, $kad, $pkg_info, $hsse, $gallary, $scurve, $piers);
+                                $slug_data = $this->slugConcat($slug_name[0]['slug'], $tpack);
+                                $outer = array();
+                                $inner = array(
+                                    "name" => strtoupper($slug_name[0]['slug']),
+                                    "value" => $slug_data
+                                );
+                                array_push($outer, $inner);
+                                $data['item'] = array('item' => $item_meta, 'data' => $outer, 'static_data' => '[]');
+                                break;
+                            case "piers":
+                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                break;
+                            case "kpiv201": case "kpiv202": case "kpiv203": case "kpiv204": case "kpiv205": case "kpiv206": case "kpiv207": case "kpiv208": case "kpiv209": case "kpiv210":
+                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                break;
+                            default:
+                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                break;
+                        }
+                        break;
+                    case "viaducts":
+                        switch($page){
+                            case "summary":
+                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                break;
+                            case "comparison":
+                                $cmp = $this->session->userdata('cmpid');
+                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                break;
+                            default:
+                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                break;
+                        }
+                        break;
+                    case "programme":
+                        switch($page){
+                            case "scurve":
+                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                break;
+                            default:
+                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                break;
+                        }
                         break;
                     default:
                         $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);

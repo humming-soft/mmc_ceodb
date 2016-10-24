@@ -578,7 +578,7 @@ class Portlets_model extends CI_Model
         }
         $slug_result = $this->db->get()->result_array();
         foreach ($slug_result as $v) {
-              array_push($kpi["QRM"],array("type"=>$v['kpi_type'],"baseline"=>$v['baseline'],"target"=>$v['kpi_target'],"actual"=>$v['actual']));
+            array_push($kpi["QRM"], array("type" => $v['kpi_type'], "baseline" => $v['baseline'], "target" => $v['kpi_target'], "actual" => $v['actual']));
         }
         return json_encode($kpi);
     }
@@ -2106,7 +2106,13 @@ class Portlets_model extends CI_Model
 		}}';
         return $dummy_json;
     }
-
+    /**
+     * @sebin
+     * date:21/10/2016
+     * Parameter:Table Name, Sql Query, Data Date field name in the table(default: data_date), Boolean value for removing Order by clause
+     * Return type: String
+     * Description: Attain the Max of data date from schemas.
+     */
     public function max_data_date($table,$q,$field = FALSE,$remove_order_by = FALSE){
         $merger="";
         if($field){
@@ -2120,6 +2126,19 @@ class Portlets_model extends CI_Model
             $max_date = $this->db->query($merger . " " . strstr($q, 'FROM'))->row()->max;
         }
         return $max_date;
+    }
+    /**
+     * @sebin
+     * date:22/10/2016
+     * Parameter:Slug_ID(Item ID), Page Name
+     * Return type: array
+     * Description: get the page
+     */
+    public function get_page($slug_id)
+    {
+        $sql = "select \"page\" from \"pages\" where \"item_id\" = '$slug_id'";
+        $result = $this->db->query($sql)->result_array();
+        return $result;
     }
 
 }
