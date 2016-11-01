@@ -1008,6 +1008,7 @@ mpxd.modules.viaducts.kpi_viaducts = Backbone.View.extend({
         template = _.template(html, {data: that.data});
         that.$el.html(template);
         $('#header_datetime:visible').hide();
+        console.log(that.data.data);
         that.$el.find('#bar-line-chart').highcharts({
             chart: {
                 zoomType: 'xy',
@@ -1087,7 +1088,7 @@ mpxd.modules.viaducts.kpi_viaducts = Backbone.View.extend({
                     yAxis: 1,
                     data: [20, 25, 10,30,80, 20, 25, 10,10],
                     tooltip: {
-                        valueSuffix: ' %'
+                        valueSuffix: '%'
                     }
                 },
                 {
@@ -1116,6 +1117,16 @@ mpxd.modules.viaducts.kpi_viaducts = Backbone.View.extend({
                         valueSuffix: '%'
                     }
                 }],
+            lang: {
+                noData: "Data not available."
+            },
+            noData: {
+                style: {
+                    fontWeight: 'bold',
+                    fontSize: '15px',
+                    color: '#303030'
+                }
+            },
             legend: {
                 enabled: false,
                 layout: 'vertical',
@@ -1138,9 +1149,9 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
         var html = mpxd.getTemplate(that.data.type);
 
         var ref = that.data.data[0].data.REF;
-        console.log(ref);
-        console.log(that.data.id);
-        console.log(that.data);
+        // console.log(ref);
+        // console.log(that.data.id);
+        // console.log(that.data);
         // console.log(demo[that.data.id]);
         // console.log(that.data.data[0].data.CMP[demo[that.data.id]]);
         var qrm = that.data.data[0].data.CMP[ref[that.data.id]].QRM;
@@ -1347,6 +1358,16 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
                  }
                  },*/
             }],
+            lang: {
+                noData: "Data not available."
+            },
+            noData: {
+                style: {
+                    fontWeight: 'bold',
+                    fontSize: '15px',
+                    color: '#303030'
+                }
+            },
             plotOptions: {
                 series: {
                     marker: {

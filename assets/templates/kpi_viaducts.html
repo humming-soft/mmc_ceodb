@@ -11,23 +11,23 @@
 					<div class="row">
 						<div class="col-md-12 item psd_data_type1">
 							<span class="item_title">Baseline</span>
-							<span class="item_value iv_baseline">88.88%</span>
+							<span class="item_value iv_baseline"><%=(typeof data.data.baseline == 'undefined')?0:data.data.baseline%>%</span>
 						</div>
 						<div class="col-md-12 item psd_data_type1">
 							<span class="item_title">KPI Target</span>
-							<span class="item_value iv_kpitarget">88.88%</span>
+							<span class="item_value iv_kpitarget"><%=(typeof data.data.target == 'undefined')?0:data.data.target%>%</span>
 						</div>
 						<div class="col-md-12 item psd_data_type1">
 							<span class="item_title">Actual</span>
-							<span class="item_value iv_actual">88.88%</span>
+							<span class="item_value iv_actual"><%=(typeof data.data.actual == 'undefined')?0:data.data.actual%>%</span>
 						</div>
 						<div class="col-md-12 item psd_data_type1">
 							<span class="item_title">Shortfall</span>
-							<span class="item_value iv_shortfall">88.88%</span>
+							<span class="item_value iv_shortfall"><%=(typeof data.data.shortfall == 'undefined')?0:data.data.shortfall%>%</span>
 						</div>
 						<div class="col-md-12 item psd_data_type1">
 							<span class="item_title">Actual Progress</span>
-							<span class="item_value iv_actualprogress">88.88%</span>
+							<span class="item_value iv_actualprogress"><%=(typeof data.data.progress == 'undefined')?0:data.data.progress%>%</span>
 							<br><br><br>
 						</div>
 					</div>

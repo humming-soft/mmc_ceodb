@@ -338,7 +338,16 @@ class Dashboard extends CI_Controller {
                                 $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
                                 break;
                             case "kpiv201": case "kpiv202": case "kpiv203": case "kpiv204": case "kpiv205": case "kpiv206": case "kpiv207": case "kpiv208": case "kpiv209": case "kpiv210":
-                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                $qrm = $this->portlets_model->kpi_piers($slug_name[0]['slug'], $date);
+                                $outer = array();
+                                $inner = array(
+                                    "name" => "KPI- ".strtoupper($slug_name[0]['slug']),
+                                    "value" => $qrm
+                                );
+                                array_push($outer, $inner);
+//                                print_r($outer);
+//                                exit;
+                                $data['item'] = array('item' => $item_meta, 'data' => $outer, 'static_data' => $data_source_static);
                                 break;
                             default:
                                 $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);

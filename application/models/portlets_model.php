@@ -669,6 +669,30 @@ class Portlets_model extends CI_Model
         return json_encode($kpi);
     }
 
+    public function kpi_piers($viaduct, $date = FALSE){
+        $kpi = array($viaduct => array());
+        $this->db->select('tbl_kpi_master.kpi_type,tbl_kpi_master.baseline,tbl_kpi_master.kpi_target,tbl_kpi_master.actual');
+        $this->db->from('tbl_kpi_master');
+        $this->db->join('tbl_journal_master', 'tbl_journal_master.journal_master_id = tbl_kpi_master.journal_master_id');
+        $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_journal_master.pjct_master_id');
+        $this->db->where('tbl_journal_master.journal_category_id',KPI);
+        $this->db->where('LOWER(tbl_project_master.pjct_name)',strtolower($viaduct));
+        if ($date) { //If date is selected
+            $timestamp = date('Y-m-d', strtotime($date));
+            $this->db->where('DATE(tbl_kpi_master.data_date)', $timestamp);
+        }else{
+            $max_date = $this->max_data_date("tbl_kpi_master", $this->db->get_compiled_select('', FALSE));
+            if($max_date!=""){
+                $this->db->where('tbl_kpi_master.data_date', $max_date);
+            }
+        }
+        $slug_result = $this->db->get()->result_array();
+        foreach ($slug_result as $v) {
+            $kpi[$viaduct][strtolower(preg_replace('/\s+/', '', $v['kpi_type']))] = array("type" => $v['kpi_type'], "baseline" => $v['baseline'], "target" => $v['kpi_target'], "actual" => $v['actual']);
+        }
+        return json_encode($kpi);
+    }
+
     public function piers(){
         $dummy_json = '{"PIERS": {
             "DD01": {
