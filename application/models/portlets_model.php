@@ -676,6 +676,7 @@ class Portlets_model extends CI_Model
         foreach ($slug_result as $v) {
             array_push($kpi["QRM"], array("type" => $v['kpi_type'], "baseline" => $v['baseline'], "target" => $v['kpi_target'], "actual" => $v['actual']));
         }
+        $kpi["QRM"]["url"] = strtolower($viaduct)."/kpi".strtolower($viaduct);
         return json_encode($kpi);
     }
 
