@@ -2067,6 +2067,16 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
                 data: that.data.actualData,
                 color: '#0070C0'
             }],
+            lang: {
+                noData: "Data not available!"
+            },
+            noData: {
+                style: {
+                    fontWeight: 'bold',
+                    fontSize: '14px',
+                    color: '#6F6A6A'
+                }
+            },
             plotOptions: {
                 series: {
                     marker: {
@@ -2124,6 +2134,7 @@ mpxd.constructors.scurve = function (data) {
 
 mpxd.modules.scurve.GenerateScurve = function (items, componentSelector) {
     //mpxd.modules.scurve.initializeScurve();
+    try{
         var data = items;
         var el = "#portlet_" + data.id;
         var type = data.chartType;
@@ -2187,12 +2198,15 @@ mpxd.modules.scurve.GenerateScurve = function (items, componentSelector) {
             data.trendColor = "#2E9AFE"
             data.arrowDirection = "right";
         }
+    }catch(e){
+        console.log("Error in S-Curve"+e);
+    }
+        view = (typeof view == 'undefined')?1:view;
         if (view == "1") {
             return new mpxd.modules.scurve.ScurveView1({data: data, el: el});
         } else if (view == "2") {
             return new mpxd.modules.scurve.ScurveView2({data: data, el: el, componentSelector: componentSelector});
         }
-
 }
 
 

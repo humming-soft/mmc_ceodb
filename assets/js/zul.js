@@ -1080,8 +1080,7 @@ mpxd.modules.progress.ProgressView = Backbone.View.extend({
     render: function() {
         var that = this;
         var html = mpxd.getTemplate("progress");
-
-        var currentProgress = parseFloat(that.data.data.currentActual);
+        var currentProgress = parseFloat((typeof that.data.data.currentActual == "undefined")?0:that.data.data.currentActual);
         var remainingProgress = 100 - currentProgress;
         template = _.template(html, {data: that.data});
         that.$el.html(template);
