@@ -235,6 +235,16 @@ class Dashboard extends CI_Controller {
             $page = ($page == false ? 1 : $page);
             $result = $this->dashboard_model->getPortlet($slug, $page);
         }
+
+        /*Added by Sebin : Starts Here*/
+        if($page=="comparison"){
+            $vals = $this->session->userdata('cmpid');
+            if(sizeof($vals)>0) {
+                $result = array_slice($result, 0,sizeof($vals));
+            }
+        }
+        /*Ends here*/
+
         $data['title'] = 'portlet configuration';
         $data['item'] = $result;
 //        var_dump($data);
@@ -256,7 +266,7 @@ class Dashboard extends CI_Controller {
     }
     /**
      * @sebin(Modified), @jane(Modified)
-     * date:23/10/2016 (Date last Modified)
+     * date:25/10/2016 (Date last Modified)
      * Parameter:
      * Return type: ajax call , Array
      * Description: Attain the portlet wise data.
@@ -345,8 +355,36 @@ class Dashboard extends CI_Controller {
                                 $data['item'] = array('item' => $item_meta, 'data' => $outer, 'static_data' => '[]');
                                 break;
                             case "comparison":
-                                $cmp = $this->session->userdata('cmpid');
-                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                $ids = $this->session->userdata('cmpid');
+                                if(sizeof($ids)>0){
+                                    $cmp = $ids;
+                                }else{
+                                    $r = $this->portlets_model->get_viaducts();
+                                    $bs = array();
+                                    foreach($r as $s){
+                                        foreach($s as $v) {
+                                            array_push($bs, $v);
+                                        }
+                                    }
+                                    $cmp = $bs;
+                                }
+                                $arr_cmp = array();
+                                $slug_data =array();
+                                foreach($cmp as $pid) {
+                                    $cmp_slug = $this->portlets_model->get_project($pid);
+                                    $kad = $this->subString($this->portlets_model->kad($cmp_slug, $date));
+                                    $scurve = $this->subString($this->portlets_model->scurve($cmp_slug, $date));
+                                    $qrm = $this->subString($this->portlets_model->kpi($cmp_slug, $date));
+                                    $arr_cmp[strtoupper($cmp_slug)]=array();
+                                    array_push($arr_cmp[strtoupper($cmp_slug)], $qrm, $kad, $scurve);
+                                }
+
+                                $ref = $this->portlets_model->get_ref($item_meta,$cmp);
+                                $mdata = $this->slugConcat2("CMP", $arr_cmp, $ref);
+                                $outer = array();
+                                $inner = array("name" => "Viaducts Comparison","value" => $mdata);
+                                array_push($outer, $inner);
+                                $data['item'] = array('item' => array_reverse($item_meta), 'data' => $outer, 'static_data' => "[]");
                                 break;
                             default:
                                 $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
@@ -386,6 +424,18 @@ class Dashboard extends CI_Controller {
         }
 
         return rtrim($data,',').'}}';
+    }
+    public function slugConcat2($slug,$pack, $ref){
+        $data = '{"'.$slug.'":{';
+        foreach ($pack as $k=>$v) {
+            $data = $data . '"'.$k.'"'.':{';
+            foreach ($v as $z) {
+                $data = $data . $z . ',';
+            }
+            $data = rtrim($data,',').'},';
+        }
+
+        return rtrim($data,',').'},"REF":'.$ref.'}';
     }
 
     public function setapi() {

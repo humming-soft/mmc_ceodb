@@ -2751,7 +2751,7 @@ function loadPage(p, dontsavestate) {
                 //temp.push(json);
                 //console.log(result.data[i].value);
             }
-            //console.log(result);
+            // console.log(result);
             var array = mpxd.generatePortletContent(result.item);
             var temp = [];
             $("div#loading_pad").addClass("loading_pad_gohide");

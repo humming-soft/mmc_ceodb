@@ -259,7 +259,6 @@ mpxd.generatePortletContent = function (data) {
 	$.each(portletArray, function(idx, d) { 
 		lookup[d.id] = portletArray[idx];
 	});*/
-	//console.log(data);
 	for (var i in data){
 		//console.log(data[i]);
 
@@ -271,7 +270,6 @@ mpxd.generatePortletContent = function (data) {
 		//var pointer = mpxd.datasourceAss
 		
 		var result = undefined;
-		
 		$.each(mpxd.datasource, function(idx, k){
 			if ((typeof k.data[currentSlug] != "undefined") && (typeof k.data[currentSlug][path[0]] != "undefined")) {
 				/* Traverse through datasource using key provided in items_meta */

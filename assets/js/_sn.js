@@ -904,8 +904,12 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
        for(var i=0;i<4;i++) {
 
-          var actual = parseInt(parseInt((typeof this.data.data[i]['actual']=="undefined")?0:this.data.data[i]['actual'])/parseInt((typeof this.data.data[i]['baseline']=="undefined")?1:this.data.data[i]['baseline'])*100);
-          var target = parseInt(parseInt((typeof this.data.data[i]['target']=="undefined")?0:this.data.data[i]['target'])/parseInt((typeof this.data.data[i]['baseline']=="undefined")?1:this.data.data[i]['baseline'])*100);
+           if(typeof this.data.data[i]==="undefined"){
+               var actual=0; var target=0;
+           }else {
+               var actual = parseInt(parseInt((typeof this.data.data[i]['actual'] == "undefined") ? 0 : this.data.data[i]['actual']) / parseInt((typeof this.data.data[i]['baseline'] == "undefined") ? 1 : this.data.data[i]['baseline']) * 100);
+               var target = parseInt(parseInt((typeof this.data.data[i]['target'] == "undefined") ? 0 : this.data.data[i]['target']) / parseInt((typeof this.data.data[i]['baseline'] == "undefined") ? 1 : this.data.data[i]['baseline']) * 100);
+           }
            that.$el.find('#chart_'+i).highcharts({
                chart: {
                    plotBackgroundColor: null,
@@ -990,7 +994,7 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
                    enabled: false
                },
            });
-           that.$el.find('#p'+i).text(this.data.data[i]['type']);
+           that.$el.find('#p'+i).text((typeof this.data.data[i]=="undefined")?"-":this.data.data[i]['type']);
        }
     }
 });
@@ -1132,13 +1136,45 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
     }, render: function () {
         var that = this;
         var html = mpxd.getTemplate(that.data.type);
-        template = _.template(html, {data: that.data});
+
+        var ref = that.data.data[0].data.REF;
+        console.log(ref);
+        console.log(that.data.id);
+        console.log(that.data);
+        // console.log(demo[that.data.id]);
+        // console.log(that.data.data[0].data.CMP[demo[that.data.id]]);
+        var qrm = that.data.data[0].data.CMP[ref[that.data.id]].QRM;
+        var kad = that.data.data[0].data.CMP[ref[that.data.id]].KAD;
+        var scurve = that.data.data[0].data.CMP[ref[that.data.id]].scurve;
+        var h_data={
+            "kad":(typeof kad == "undefined")?'[]':kad,
+            "scurve":{
+                "actual":(typeof scurve.currentActual == "undefined")?"N/A":scurve.currentActual,
+                "early":(typeof scurve.currentEarly == "undefined")?"N/A":scurve.currentEarly,
+                "late":(typeof scurve.currentLate == "undefined")?"N/A":scurve.currentLate,
+                "variance_early":(typeof scurve.varEarly == "undefined")?"N/A":scurve.varEarly,
+                "variance_late":(typeof scurve.varLate == "undefined")?"N/A":scurve.varLate,
+                "trend":(typeof scurve.trend == "undefined")?"N/A":scurve.trend
+            }
+        };
+        template = _.template(html, {data: h_data});
         that.$el.html(template);
+
+        that.$el.find('.portlet_content_kad').css({"height":"280"});
+        that.$el.find('.portlet_content_kpi').css({"height":"215"});
+        that.$el.find('.portlet_content_scurve').css({"height":"240"});
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-        // for Demo
-        var a=[10,20,30,40];
+
+        that.$el.find('#v_title').text(ref[that.data.id]);
+
         for(var i=0;i<4;i++) {
-            that.$el.find('#chart_' + a[i]).highcharts({
+            if(typeof qrm[i]==="undefined"){
+                var actual=0; var target=0;
+            }else {
+                var actual = parseInt(parseInt((typeof qrm[i]['actual'] == "undefined") ? 0 : qrm[i]['actual']) / parseInt((typeof qrm[i]['baseline'] == "undefined") ? 1 : qrm[i]['baseline']) * 100);
+                var target = parseInt(parseInt((typeof qrm[i]['target'] == "undefined") ? 0 : qrm[i]['target']) / parseInt((typeof qrm[i]['baseline'] == "undefined") ? 1 : qrm[i]['baseline']) * 100);
+            }
+            that.$el.find('#chart_'+i).highcharts({
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: 0,
@@ -1151,7 +1187,7 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
                     height: 150
                 },
                 title: {
-                    text: 30 + '%',
+                    text: actual + '%',
                     style: {
                         color: '#9EDD2E',
                         fontSize: '150%',
@@ -1192,12 +1228,12 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
                     data: [
                         {
                             name: 'Completed',
-                            y: 30,
+                            y: actual,
                             color: '#fc0'
                         },
                         {
                             name: 'Remaining',
-                            y: 70,
+                            y: (100-actual),
                             color: 'rgba(0,0,0,0.2)'
                         },
                     ]
@@ -1208,12 +1244,12 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
                     data: [
                         {
                             name: 'Completed',
-                            y: 70,
+                            y: target,
                             color: '#0d6ee2'
                         },
                         {
                             name: 'Remaining',
-                            y: 30,
+                            y: (100-target),
                             color: 'rgba(0,0,0,0.2)'
                         },
                     ]
@@ -1222,6 +1258,7 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
                     enabled: false
                 },
             });
+            that.$el.find('#p'+i).text((typeof qrm[i]=="undefined")?"-":qrm[i]['type']);
         }
         var chart = new Highcharts.Chart({
             title: {
@@ -1229,8 +1266,8 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
                 x: -20 //center
             },
             xAxis: {
-                categories: ["Jan/12", "Feb/12", "Mar/12", "Apr/12", "May/12", "Jun/12", "Jul/12", "Aug/12", "Sep/12", "Oct/12", "Nov/12", "Dec/12", "Jan/13", "Feb/13", "Mar/13", "Apr/13", "May/13", "Jun/13", "Jul/13", "Aug/13", "Sep/13", "Oct/13", "Nov/13", "Dec/13", "Jan/14", "Feb/14", "Mar/14", "Apr/14", "May/14", "Jun/14", "Jul/14", "Aug/14", "Sep/14", "Oct/14", "Nov/14", "Dec/14", "Jan/15", "Feb/15", "Mar/15", "Apr/15", "May/15", "Jun/15", "Jul/15", "Aug/15", "Sep/15", "Oct/15", "Nov/15", "Dec/15", "Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16", "Jul/16", "Aug/16", "Sep/16", "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17"],
-                tickInterval: 3,
+                categories: scurve.categories,
+                tickInterval: scurve.tickInterval,
                 labels: {
                     rotation: 270,
                     //step: 3,
@@ -1291,17 +1328,17 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
             },
             series: [{
                 name: 'Early',
-                data:  [0, 1.02, 1.28, 1.53, 2.05, 2.3, 2.56, 3.07, 3.58, 4.35, 5.12, 5.37, 5.88, 6.91, 7.42, 8.44, 9.72, 11.25, 12.79, 13.81, 14.58, 16.88, 18.16, 19.95, 21.23, 23.27, 24.81, 26.85, 29.99, 32.1, 33.89, 35.86, 37.48, 39.26, 39.81, 41.58, 41.98, 42.86, 43.95, 45.26, 46.74, 48.78, 51.34, 54.13, 56.31, 60.1, 63.28, 65.04, 67.11, 67.34, 69, 73.23, 77.49, 80.83, 84.19, 87.99, 91.92, 95.32, 97.84, 98.77, 98.87, 98.96, 99.12, 99.49, 99.77, 100, 100, 100, 100],
+                data: scurve.earlyData,
                 color: '#04B152',
                 enableMouseTracking: false
             }, {
                 name: 'Late',
-                data: [0, 0.26, 0.51, 0.77, 1.03, 1.54, 2.05, 3.08, 4.62, 6.92, 9.74, 12.05, 14.62, 16.15, 18.21, 20, 22.05, 24.36, 26.67, 29.23, 31.54, 33.85, 35.9, 38.97, 41.28, 42.82, 45.13, 47.18, 50.02, 51.91, 53.54, 55.33, 57.12, 58.67, 59.81, 61.25, 62.05, 62.9, 64.01, 63.36, 64.52, 66.28, 67.76, 69.36, 70.34, 71.84, 74.01, 75.61, 76.46, 78.04, 79.09, 80.71, 83.25, 85.75, 88.05, 90.7, 92.81, 94.8, 96.45, 98.09, 98.73, 98.95, 99.36, 99.41, 99.67, 99.86, 99.89, 100, 100],
+                data: scurve.delayedData,
                 color: '#FF0000',
                 enableMouseTracking: false
             }, {
                 name: 'Actual',
-                data: [0, 0, 0, 0.53, 0.79, 1.06, 1.32, 1.58, 1.85, 2.63, 3.67, 4.19, 5.49, 6.27, 7.31, 8.61, 10.17, 11.98, 13.54, 15.88, 17.95, 21.07, 22.63, 24.7, 26.52, 28.6, 30.15, 32.23, 34.99, 37.24, 39.55, 41.73, 43.52, 45.56, 47.12, 49.21, 50.33, 51.43, 52.8, 54.05, 55.09, 56.5, 58.2, 61.75, 64.57, 67.23, 70.24, 72.77, 75.85],
+                data: scurve.actualData,
                 color: '#0070C0'
                 //enableMouseTracking: false,
                 /*events : {
@@ -1324,11 +1361,13 @@ mpxd.modules.viaducts.compare = Backbone.View.extend({
                 type: 'spline',
                 backgroundColor: '#222',
                 // renderTo: 'chart_' + that.data.id
-                renderTo: 'chart_88'
+                // renderTo: 'chart_88'
+                renderTo: that.$el.find('#chart_88')[0]
             }
 
 
         });
+
     }
 });
 /*

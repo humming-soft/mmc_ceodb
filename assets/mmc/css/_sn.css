@@ -281,3 +281,9 @@ html>body #loading_pad {
 }
 
 /* end .squaredThree */
+
+.no-data{
+    text-align: center;
+    height: 100% !important;
+    vertical-align: middle !important;
+}

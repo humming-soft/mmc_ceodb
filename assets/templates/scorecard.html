@@ -2,7 +2,7 @@
     <div class="row content">
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-circle-o-notch" aria-hidden="true"></i>
-            Summary
+            <%=data.title%>
         </div>
         <div class="col-md-12 portlet_content">
             <div class="">
@@ -41,106 +41,19 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <% if((Object.keys(data.data[0].data.systems.syspackage).length)>0){%>
+                    <%_.each(data.data[0].data.systems.syspackage, function(i) {%>
                     <tr>
-                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="1"></td>
-                        <td>V 201</td>
-                        <td class="val_early">88%</td>
-                        <td class="val_late">88%</td>
-                        <td class="val_actual">88%</td>
-                        <td class="val_varearly">88%</td>
-                        <td class="val_varlate">88%</td>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="<%=i.id%>"></td>
+                        <td><%=i.item%></td>
+                        <td class="val_early"><%=i.early%>%</td>
+                        <td class="val_late"><%=i.late%>%</td>
+                        <td class="val_actual"><%=i.actual%>%</td>
+                        <td class="val_varearly"><%=i.varianceEarly%></td>
+                        <td class="val_varlate"><%=i.varianceLate%></td>
                         <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
                     </tr>
-                    <tr>
-                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="2"></td>
-                        <td>V 202</td>
-                        <td class="val_early">88%</td>
-                        <td class="val_late">88%</td>
-                        <td class="val_actual">88%</td>
-                        <td class="val_varearly">88%</td>
-                        <td class="val_varlate">88%</td>
-                        <td class="ball_indicator mrt_colorcode_ball_2"><i class="fa fa-arrow-right" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="3"></td>
-                        <td>V 203</td>
-                        <td class="val_early">88%</td>
-                        <td class="val_late">88%</td>
-                        <td class="val_actual">88%</td>
-                        <td class="val_varearly">88%</td>
-                        <td class="val_varlate">88%</td>
-                        <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="4"></td>
-                        <td>V 204</td>
-                        <td class="val_early">88%</td>
-                        <td class="val_late">88%</td>
-                        <td class="val_actual">88%</td>
-                        <td class="val_varearly">88%</td>
-                        <td class="val_varlate">88%</td>
-                        <td class="ball_indicator mrt_colorcode_ball_3"><i class="fa fa-arrow-down" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="5"></td>
-                        <td>V 205</td>
-                        <td class="val_early">88%</td>
-                        <td class="val_late">88%</td>
-                        <td class="val_actual">88%</td>
-                        <td class="val_varearly">88%</td>
-                        <td class="val_varlate">88%</td>
-                        <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="6"></td>
-                        <td>V 206</td>
-                        <td class="val_early">88%</td>
-                        <td class="val_late">88%</td>
-                        <td class="val_actual">88%</td>
-                        <td class="val_varearly">88%</td>
-                        <td class="val_varlate">88%</td>
-                        <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="7"></td>
-                        <td>V 207</td>
-                        <td class="val_early">88%</td>
-                        <td class="val_late">88%</td>
-                        <td class="val_actual">88%</td>
-                        <td class="val_varearly">88%</td>
-                        <td class="val_varlate">88%</td>
-                        <td class="ball_indicator mrt_colorcode_ball_3"><i class="fa fa-arrow-down" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="8"></td>
-                        <td>V 208</td>
-                        <td class="val_early">88%</td>
-                        <td class="val_late">88%</td>
-                        <td class="val_actual">88%</td>
-                        <td class="val_varearly">88%</td>
-                        <td class="val_varlate">88%</td>
-                        <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="9"></td>
-                        <td>V 209</td>
-                        <td class="val_early">88%</td>
-                        <td class="val_late">88%</td>
-                        <td class="val_actual">88%</td>
-                        <td class="val_varearly">88%</td>
-                        <td class="val_varlate">88%</td>
-                        <td class="ball_indicator mrt_colorcode_ball_2"><i class="fa fa-arrow-right" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="10"></td>
-                        <td>V 210</td>
-                        <td class="val_early">88%</td>
-                        <td class="val_late">88%</td>
-                        <td class="val_actual">88%</td>
-                        <td class="val_varearly">88%</td>
-                        <td class="val_varlate">88%</td>
-                        <td class="ball_indicator mrt_colorcode_ball_2"><i class="fa fa-arrow-right" aria-hidden="true"></i></td>
-                    </tr>
+                    <%})}%>
                     </tbody>
                 </table>
             </div>

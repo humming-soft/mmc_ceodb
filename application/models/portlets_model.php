@@ -2106,56 +2106,51 @@ class Portlets_model extends CI_Model
 		}}';
         return $dummy_json;
     }
-
+    /**
+     * @sebin
+     * date:24/10/2016
+     * Parameter:Data Date
+     * Return type: json
+     * Description: Viaduct Summary (Progress of the Viaducts).
+     */
     public function viaducts_summary($date = FALSE){
         $v_summary["systems"] = array(
             "syspackage"=>array()
         );
-        $this->db->select("tbl_project_master.pjct_name, tbl_project_master.pjct_master_id,tbl_project_prgs_master.early_perc,tbl_project_prgs_master.actual_perc,tbl_project_prgs_master.late_perc,tbl_project_prgs_master.early_variance,tbl_project_prgs_master.late_varience");
-        $this->db->from('tbl_project_prgs_master');
-        $this->db->join('tbl_journal_master', 'tbl_journal_master.journal_master_id = tbl_project_prgs_master.journal_master_id');
-        $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_journal_master.pjct_master_id');
-        $this->db->where('tbl_journal_master.journal_category_id',V_SCURVE);
-        if ($date) { //if date is selected
-            $timestamp = date('Y-m-d', strtotime($date));
-            $this->db->where('DATE(tbl_project_prgs_master.data_date)', $timestamp);
-        }else{
-            $max_date = $this->max_data_date("tbl_project_prgs_master", $this->db->get_compiled_select('', FALSE));
-            if($max_date!=""){
-                $this->db->where('tbl_project_prgs_master.data_date', $max_date);
+        $ids = $this->get_viaducts();
+        foreach($ids as $i){
+            $this->db->select("tbl_project_master.pjct_name, tbl_project_master.pjct_master_id,tbl_project_prgs_master.early_perc,tbl_project_prgs_master.actual_perc,tbl_project_prgs_master.late_perc,tbl_project_prgs_master.early_variance,tbl_project_prgs_master.late_varience");
+            $this->db->from('tbl_project_prgs_master');
+            $this->db->join('tbl_journal_master', 'tbl_journal_master.journal_master_id = tbl_project_prgs_master.journal_master_id');
+            $this->db->join('tbl_project_master', 'tbl_project_master.pjct_master_id = tbl_journal_master.pjct_master_id');
+            $this->db->where('tbl_journal_master.journal_category_id', V_SCURVE);
+            $this->db->where('tbl_project_master.pjct_master_id', $i['pjct_master_id']);
+            if ($date) { //if date is selected
+                $timestamp = date('Y-m-d', strtotime($date));
+                $this->db->where('DATE(tbl_project_prgs_master.data_date)', $timestamp);
+            } else {
+                $max_date = $this->max_data_date("tbl_project_prgs_master", $this->db->get_compiled_select('', FALSE));
+                if ($max_date != "") {
+                    $this->db->where('tbl_project_prgs_master.data_date', $max_date);
+                }
             }
-        }
-        $vs_result = $this->db->get()->result_array();
-        foreach($vs_result as  $v) {
-            array_push($v_summary["systems"]["syspackage"], array(
-                "item"=>strtoupper($v["pjct_name"]),
-                "url"=> strtolower($v["pjct_name"])."/index",
-                "early"=> $v["early_perc"],
-                "late"=> $v["late_perc"],
-                "actual"=> $v["actual_perc"],
-                "varianceEarly"=> $v["early_variance"],
-                "varianceLate"=> $v["late_varience"],
-                "trend"=> "down"
+            $vs_result = $this->db->get()->result_array();
+            foreach ($vs_result as $v) {
+                array_push($v_summary["systems"]["syspackage"], array(
+                    "item" => strtoupper($v["pjct_name"]),
+                    "id" => $v["pjct_master_id"],
+                    "url" => strtolower($v["pjct_name"]) . "/index",
+                    "early" => $v["early_perc"],
+                    "late" => $v["late_perc"],
+                    "actual" => $v["actual_perc"],
+                    "varianceEarly" => $v["early_variance"],
+                    "varianceLate" => $v["late_varience"],
+                    "trend" => "down"
                 ));
+            }
         }
         return json_encode($v_summary);
     }
-
-/*{
-"systems": {
-"syspackage": [
-{
-"item": "SBK-S-01",
-"url": "sbk-s-01/index",
-"early": "76.85",
-"late": "74.30",
-"actual": "73.34",
-"varianceEarly": "-6.0",
-"varianceLate": "-2.0",
-"trend": "down"
-}]}}*/
-
-
 
     /*Miscellaneous Methods*/
 
@@ -2187,12 +2182,44 @@ class Portlets_model extends CI_Model
      * Return type: array
      * Description: get the page
      */
-    public function get_page($slug_id)
-    {
+    public function get_page($slug_id){
         $sql = "select \"page\" from \"pages\" where \"item_id\" = '$slug_id'";
         $result = $this->db->query($sql)->result_array();
         return $result;
     }
+    /**
+     * @sebin
+     * date:24/10/2016
+     * Parameter:
+     * Return type: array
+     * Description: Id of the Projects (viaducts)
+     */
+    public function get_viaducts(){
+        $this->db->select("pjct_master_id");
+        $this->db->from('tbl_project_master');
+        return $this->db->get()->result_array();
+    }
+    /**
+     * @sebin
+     * date:25/10/2016
+     * Parameter:Project ID
+     * Return type: string
+     * Description: Returns project name based on the ID.
+     */
+    public function get_project($pid){
+        $this->db->select("pjct_name");
+        $this->db->from('tbl_project_master');
+        $this->db->where('pjct_master_id',$pid);
+        return $this->db->get()->row()->pjct_name;
+    }
 
-
+    public function get_ref($item_meta,$cmp){
+        $d = array();
+        $i=0;
+        foreach($item_meta as $sub){
+            $d[$sub['id']]=strtoupper($this->get_project($cmp[$i]));
+            $i++;
+        }
+        return json_encode($d);
+    }
 }
