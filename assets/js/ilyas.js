@@ -2115,6 +2115,7 @@ mpxd.constructors.scurve = function (data) {
         data.data.title = data.title;
     var s = mpxd.modules.scurve;
     s.initializeScurve(function () {
+        console.log(data);
         s.GenerateScurve(data.data);
     });
 
@@ -2125,7 +2126,6 @@ mpxd.modules.scurve.GenerateScurve = function (items, componentSelector) {
     //mpxd.modules.scurve.initializeScurve();
         var data = items;
         var el = "#portlet_" + data.id;
-
         var type = data.chartType;
         var view = data.viewType;
         var trend = data.trend.toLowerCase();

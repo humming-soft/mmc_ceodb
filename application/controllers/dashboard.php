@@ -394,7 +394,14 @@ class Dashboard extends CI_Controller {
                     case "programme":
                         switch($page){
                             case "scurve":
-                                $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);
+                                $pgm_data_source = $this->portlets_model->p_scurve($date);
+                                $outer = array();
+                                $inner = array(
+                                    "name" => "Programme",
+                                    "value" => $pgm_data_source
+                                );
+                                array_push($outer, $inner);
+                                $data['item'] = array('item' => $item_meta, 'data' => $outer, 'static_data' => '[]');
                                 break;
                             default:
                                 $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);

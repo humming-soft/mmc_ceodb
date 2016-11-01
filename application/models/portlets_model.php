@@ -546,6 +546,91 @@ class Portlets_model extends CI_Model
         return json_encode($pkg_info);
     }
 
+    /**
+     * @jane
+     * date:24/10/2016
+     * Parameter:date
+     * Return type:
+     * Description:function to get programme scurve data
+     */
+    public function p_scurve($date = FALSE){
+        $data["programme"] = array();
+        $this->db->distinct();
+        $this->db->select('prgm_sub_name');
+        $this->db->from('tbl_prgm_master');
+        $page_query = $this->db->get();
+        $sub_name_result = $page_query->result_array();
+        foreach($sub_name_result as $val){
+            //echo $val['prgm_sub_name'];
+            $this->db->select("tbl_prgm_master.prgm_sub_name,tbl_prgm_master.early_prec,tbl_prgm_master.actual_prec,tbl_prgm_master.late_prec,tbl_prgm_master.early_varience,tbl_prgm_master.late_varience, to_char(tbl_prgm_master.data_date, 'Mon/yy') AS data_date");
+            $this->db->from('tbl_prgm_master');
+            $this->db->join('tbl_journal_master', 'tbl_journal_master.journal_master_id = tbl_prgm_master.journal_master_id');
+            $this->db->where('tbl_prgm_master.prgm_sub_name',$val['prgm_sub_name']);
+            $this->db->where('tbl_journal_master.journal_category_id',P_SCURVE);
+            $this->db->order_by('tbl_prgm_master.data_date','desc');
+            $this->db->order_by('tbl_prgm_master.crea_date','desc');
+//          echo ($this->db->get_compiled_select());
+            if ($date) { //if date is selected
+                $timestamp = date('Y-m-d', strtotime($date));
+                $this->db->where('DATE(tbl_prgm_master.data_date)<=', $timestamp);
+            }
+//            echo $this->db->get_compiled_select('',FALSE);
+            $page_query = $this->db->get();
+            $p_result = $page_query->result_array();
+            $i = true;
+            $prefix = $actual_perc = $early_perc = $late_perc = $data_date = '';
+            $pkg_info = array();
+            foreach($p_result as $result) {
+                if ($i) {
+                    $pkg_info[$result["prgm_sub_name"]]["currentEarly"] = $result['early_prec'] . "%";
+                    $pkg_info[$result["prgm_sub_name"]]["currentLate"] = $result['late_prec'] . "%";
+                    $pkg_info[$result["prgm_sub_name"]]["currentActual"] = $result['actual_prec'] . "%";
+                    $pkg_info[$result["prgm_sub_name"]]["varEarly"] = $result['early_varience'] . "%";
+                    $pkg_info[$result["prgm_sub_name"]]["varLate"] = $result['late_varience'] . "%";
+                    $actual_perc .= $prefix . $result['actual_prec'];
+                    $early_perc .= $prefix . $result['early_prec'];
+                    $late_perc .= $prefix . $result['late_prec'];
+                    $data_date .= $prefix . $result['data_date'];
+                    $prefix = ', ';
+                    $i = false;
+                    if(sizeof($p_result)==1){
+                        $dates = explode(", ", $data_date);
+                        $pkg_info[$result["prgm_sub_name"]]["actualData"] = array_reverse(array_map('floatval', explode(", ", $actual_perc)));
+                        $pkg_info[$result["prgm_sub_name"]]["earlyData"] = array_reverse(array_map('floatval', explode(", ", $early_perc)));
+                        $pkg_info[$result["prgm_sub_name"]]["delayedData"] = array_reverse(array_map('floatval', explode(", ", $late_perc)));
+                        $pkg_info[$result["prgm_sub_name"]]["categories"] = array_reverse($dates);
+                    }
+                } else {
+                    $actual_perc .= $prefix . $result['actual_prec'];
+                    $early_perc .= $prefix . $result['early_prec'];
+                    $late_perc .= $prefix . $result['late_prec'];
+                    $data_date .= $prefix . $result['data_date'];
+                    $prefix = ', ';
+                    $dates = explode(", ", $data_date);
+                    $pkg_info[$result["prgm_sub_name"]]["actualData"] = array_reverse(array_map('floatval', explode(", ", $actual_perc)));
+                    $pkg_info[$result["prgm_sub_name"]]["earlyData"] = array_reverse(array_map('floatval', explode(", ", $early_perc)));
+                    $pkg_info[$result["prgm_sub_name"]]["delayedData"] = array_reverse(array_map('floatval', explode(", ", $late_perc)));
+                    $pkg_info[$result["prgm_sub_name"]]["categories"] = array_reverse($dates);
+                }
+            }
+            if($dates) {
+                $date_count = count($dates);
+                if ($date_count > 30) {
+                    $pkg_info[$result["prgm_sub_name"]]["tickInterval"] = 3;
+                } else {
+                    $pkg_info[$result["prgm_sub_name"]]["tickInterval"] = 0;
+                }
+            }
+            $pkg_info[$result["prgm_sub_name"]]["trend"] = "up";
+            $pkg_info[$result["prgm_sub_name"]]["chartType"] = "long";
+            $pkg_info[$result["prgm_sub_name"]]["viewType"] = "1";
+            foreach($pkg_info as $key => $value){
+                $data["programme"][$key]= $value;
+            }
+        }
+        return json_encode($data);
+    }
+
     public function hsse(){
         $dummy_json = '{"hsse": [
             ["01-January-2016", "An employee being ran over by a car whilst walking along Jalan Sg. Buloh road in front of Megamas business center. He sustained injuries to his head and died in the hospital the next day."],
